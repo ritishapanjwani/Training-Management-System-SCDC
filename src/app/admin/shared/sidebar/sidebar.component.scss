@@ -1,8 +1,7 @@
-/* Import Google Fonts and Material Icons */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Material+Icons');
 
-/* Reset and Global Styles */
+
 * {
     font-family: 'Inter', sans-serif;
     box-sizing: border-box;
@@ -11,7 +10,6 @@
     text-decoration: none;
 }
 
-/* Icon Styles */
 mat-icon {
     color: #000001;
     font-family: 'Material Icons';
@@ -19,12 +17,12 @@ mat-icon {
     font-size: 20px;
 }
 
-/* Navbar Styling */
+
 .navbar {
     width: 250px;
     height: 100vh;
-    background-color: #007bff; /* Dark background */
-    color: #f9fafb; /* Light text */
+    background-color: #007bff; 
+    color: #f9fafb; 
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,14 +32,12 @@ mat-icon {
     top: 0;
 }
 
-/* Top Section */
 .top {
     margin-top: 15px;
     font-size: 24px;
     color: #f9fafb;
 }
 
-/* User Section */
 .user {
     text-align: center;
     font-weight: 800;
@@ -61,10 +57,9 @@ mat-icon {
 .user .mail {
     margin-top: -5px;
     font-size: 14px;
-    color: #d1d5db; /* Slightly lighter text */
+    color: #d1d5db; 
 }
 
-/* Menu Section */
 .menu {
     width: 100%;
     padding: 0 10px;

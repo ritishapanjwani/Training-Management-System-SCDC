@@ -1,0 +1,101 @@
+$sidenav-width: 200px;
+$sidenav-collapsed-width: 60px;
+$sidenav-bg-color: #111;
+$sidenav-hover-bg-color: #575757;
+$sidenav-highlight-bg-color: #333; // Highlight color for hover
+$sidenav-text-color: #fff;
+$sidenav-transition: 0.5s ease; // Increased duration for smoother transition
+$tab-spacing: 10px; // Space between each tab
+
+.sidenav {
+  height: 100%; // Full height
+  width: $sidenav-collapsed-width; // Collapsed width
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: 0;
+  background-color: $sidenav-bg-color;
+  overflow-x: hidden;
+  padding-top: 20px;
+  padding-left: 5px; // Start with less padding when collapsed
+  transition: width $sidenav-transition, padding-left $sidenav-transition;
+
+  &:hover {
+    width: $sidenav-width; // Expanded width
+    padding-left: 20px; // Add more padding when expanded for smoother effect
+  }
+
+  .dashboard {
+    font-size: 18px;
+    padding: 15px 15px 10px; // Extra padding to separate it from other tabs
+    margin-bottom: $tab-spacing; // Space between Dashboard and other tabs
+    text-decoration: none;
+    color: $sidenav-text-color;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    i {
+      font-size: 24px; // Icon size
+    }
+
+    span {
+      display: none; // Hide text by default
+      transition: opacity $sidenav-transition;
+      opacity: 0; // Invisible by default
+    }
+
+    &:hover {
+      background-color: $sidenav-highlight-bg-color; // Change background color on hover
+    }
+
+    &:hover span {
+      display: inline; // Show text when hovered
+      opacity: 1; // Text becomes visible
+    }
+  }
+
+  a {
+    padding: 10px 15px;
+    margin-bottom: $tab-spacing; // Add space between tabs
+    text-decoration: none;
+    font-size: 18px;
+    color: $sidenav-text-color;
+    display: flex;
+    align-items: center;
+    gap: 10px; // Space between icon and text
+    white-space: nowrap;
+    overflow: hidden;
+    transition: padding-left $sidenav-transition, background-color $sidenav-transition;
+
+    i {
+      font-size: 24px; // Icon size
+    }
+
+    span {
+      display: none; // Hide text by default
+      transition: opacity $sidenav-transition;
+      opacity: 0; // Invisible by default
+    }
+
+    &:hover {
+      background-color: $sidenav-highlight-bg-color; // Change background color on hover
+    }
+  }
+
+  // Show text when hovered and sidebar expanded
+  &:hover a span {
+    display: inline; // Show text
+    opacity: 1; // Text becomes visible
+  }
+}
+
+.main-content {
+  margin-left: $sidenav-collapsed-width;
+  padding: 20px;
+  transition: margin-left $sidenav-transition;
+
+  .sidenav:hover & {
+    margin-left: $sidenav-width; // Adjust content margin when sidebar is expanded
+  }
+}
