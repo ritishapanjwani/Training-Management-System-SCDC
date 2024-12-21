@@ -9,8 +9,16 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { DefaultComponent } from './admin/default/default.component';
-import { SidebarComponent } from './admin/shared/sidebar/sidebar.component';
+import { DefaultComponent } from './shared/components/header/default.component';
+import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
+import { DashboardComponent } from './features/dashboard/dashboard.component';
+import { ProgarmsListComponent } from './features/programs/progarms-list/progarms-list.component';
+import { ProgramsAddEditComponent } from './features/programs/progarms-list/programs-add-edit/programs-add-edit.component';
+import { TrainersListComponent } from './features/trainers/trainers-list/trainers-list.component';
+import { TrainersAddEditComponent } from './features/trainers/trainers-list/trainers-add-edit/trainers-add-edit.component';
+import { TraineesListComponent } from './features/trainees/trainees-list/trainees-list.component';
+import { TraineesAddEditComponent } from './features/trainees/trainees-list/trainees-add-edit/trainees-add-edit.component';
+import { ScoresComponent } from './features/scores/scores.component';
 
 
 
@@ -32,6 +40,14 @@ const uxModules = [
     AppComponent,
     DefaultComponent,
     SidebarComponent,
+    DashboardComponent,
+    ProgarmsListComponent,
+    ProgramsAddEditComponent,
+    TrainersListComponent,
+    TrainersAddEditComponent,
+    TraineesListComponent,
+    TraineesAddEditComponent,
+    ScoresComponent,
   ],
   imports: [
     BrowserModule,
