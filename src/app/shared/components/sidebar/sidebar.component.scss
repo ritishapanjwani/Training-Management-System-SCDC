@@ -1,140 +1,153 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Material+Icons');
-
-
-* {
-    font-family: 'Inter', sans-serif;
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-    text-decoration: none;
-}
-
-mat-icon {
-    color: #000001;
-    font-family: 'Material Icons';
-    vertical-align: middle;
-    font-size: 20px;
-}
-
-
 .navbar {
-    width: 250px;
+    display: flex;
+    align-items: center;
+    width: 180px;
     height: 100vh;
-    background-color: #007bff; 
-    color: #f9fafb; 
+    background-color: #007bff;
+    color: #f9fafb;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 20px 0;
+    padding: 20px 10px;
     position: fixed;
-    left: 0;
     top: 0;
-}
+    left: 0;
+    overflow-y: auto;
+    transition: width 0.3s ease;
 
-.top {
-    margin-top: 15px;
-    font-size: 24px;
-    color: #f9fafb;
+    // Collapsible Sidebar for small screens
+    &.collapsed {
+        width: 70px;
+
+        .user-details {
+            display: none;
+        }
+
+        .menu-button span {
+            display: none;
+        }
+
+        .menu-button mat-icon {
+            margin-right: 0;
+        }
+    }
 }
 
 .user {
     text-align: center;
-    font-weight: 800;
-    margin-bottom: 50px;
-}
-.user img {
-    margin-top: 16px;
-    width: 80px;
-    height: 80px;
-    border-radius: 50%;
-    border: 2px solid #f9fafb;
-}
-.user .name {
-    color: #f9fafb;
-    margin-top: 10px;
-}
-.user .mail {
-    margin-top: -5px;
-    font-size: 14px;
-    color: #d1d5db; 
+    margin-bottom: 30px;
+    img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        border: 3px solid #f9fafb;
+        margin-bottom: 10px;
+    }
+
+    .name {
+        font-size: 18px;
+        font-weight: bold;
+        margin-bottom: 5px;
+        // color: black;
+    }
+
+    .mail {
+        font-size: 14px;
+        color: #d1d5db;
+        // color: black;
+    }
 }
 
-.menu {
-    width: 100%;
-    padding: 0 10px;
-}
-
-.menu-head {
-    color: #d1d5db;
-    text-transform: uppercase;
-    font-weight: 900;
-    margin-left: 20px;
-    margin-bottom: 15px;
-    font-size: 14px;
-}
-
-.menu-item {
-    margin-bottom: 10px;
-}
-
-.menu-button {
-    display: flex;
-    align-items: center;
+.logout
+{
+    margin-top: 80px;
+    margin-left: -50px;
     padding: 10px 20px;
     border-radius: 5px;
-    background-color: transparent;
-    color: #f9fafb;
-    font-weight: 500;
+    background: transparent;
+    color: #000000;
     transition: background-color 0.3s ease, color 0.3s ease;
+
+    &:hover {
+        background-color: #3690f0;
+        color: #ffffff;
+    }
+}
+.menu {
+    width: 100%;
+
+    .menu-button {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        padding: 19px 25px; /* Increased padding for better spacing */
+        margin: 10px 0;
+        border-radius: 5px;
+        background: transparent;
+        color: #f9fafb;
+        transition: background-color 0.3s ease, color 0.3s ease;
+
+        mat-icon {
+            font-size: 20px; /* Fixed icon size */
+            margin-right: 15px; /* Consistent spacing */
+        }
+
+        span {
+            font-size: 15px; /* Text size */
+            margin-right: 0;  /* Remove unnecessary margin */
+            padding-top: 0;
+            display: inline-flex;   
+            align-items: center;
+        }
+
+        &:hover {
+            background-color: #3690f0;
+            color: #ffffff;
+        }
+    }
 }
 
-.menu-button mat-icon {
-    margin-right: 15px;
-    font-size: 20px;
-}
-
-.menu-button span {
-    font-size: 16px;
-}
-
-.menu-button:hover {
-    background-color: #3690f0; /* Slightly lighter dark shade */
-    color: #ffffff;
-}
-
-.menu-button:focus {
-    background-color: #405371; /* Highlight shade */
-    color: #ffffff;
-}
-
-/* Responsive Design */
+// Responsive Styles
 @media (max-width: 768px) {
     .navbar {
         width: 200px;
+
+        &.collapsed {
+            width: 60px;
+        }
     }
+
     .menu-button {
-        padding: 8px 15px;
-    }
-    .menu-button mat-icon {
-        margin-right: 10px;
-    }
-    .menu-button span {
-        font-size: 14px;
+        padding: 10px 15px;
+
+        mat-icon {
+            font-size: 24px; /* Adjusted icon size for smaller screens */
+        }
+
+        span {
+            font-size: 14px;
+        }
     }
 }
 
 @media (max-width: 480px) {
     .navbar {
         width: 180px;
+
+        &.collapsed {
+            width: 50px;
+        }
     }
+
     .menu-button {
-        padding: 6px 10px;
-    }
-    .menu-button mat-icon {
-        margin-right: 8px;
-    }
-    .menu-button span {
-        font-size: 12px;
+        padding: 8px 10px;
+
+        mat-icon {
+            font-size: 20px; /* Further adjustment for smaller screens */
+        }
+
+        span {
+            font-size: 12px;
+        }
     }
 }

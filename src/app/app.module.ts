@@ -9,7 +9,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatIconModule} from '@angular/material/icon';
 import {MatToolbarModule} from '@angular/material/toolbar';
-import { DefaultComponent } from './shared/components/header/default.component';
+import { HeaderComponent } from './shared/components/header/header.component';
 import { SidebarComponent } from './shared/components/sidebar/sidebar.component';
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { ProgarmsListComponent } from './features/programs/progarms-list/progarms-list.component';
@@ -38,7 +38,7 @@ const uxModules = [
 @NgModule({
   declarations: [
     AppComponent,
-    DefaultComponent,
+    HeaderComponent,
     SidebarComponent,
     DashboardComponent,
     ProgarmsListComponent,

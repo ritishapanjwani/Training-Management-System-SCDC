@@ -1,6 +1,6 @@
 mat-sidenav{
     background:  #007bff;
-    width: 230px;
+    width: 240px;
     height: 100%;
 }
 mat-sidenav-content{
@@ -11,16 +11,18 @@ mat-sidenav-content{
     }
     .menu-btn{
     cursor: pointer;
+    margin-left: -14px;
 
-    &:hover {
-        cursor: pointer;
-    }
+    // &:hover {
+    //     cursor: pointer;
+    // }
     }
 }
 mat-toolbar{
     mat-icon{
         margin-left: 15px;
         color: #6D8299;
+        height: 50px;
 
     }
     justify-content: space-between;

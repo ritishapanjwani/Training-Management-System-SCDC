@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { DefaultComponent } from './shared/components/header/default.component';
+import { HeaderComponent } from './shared/components/header/header.component';
 
 const routes: Routes = [
-  {path: '', component:DefaultComponent}, 
+  {path: '', component:HeaderComponent}, 
   
 ];
 
