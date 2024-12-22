@@ -4,6 +4,8 @@ import { TrainerService } from 'src/app/core/services/trainers.service';
 import { Trainer } from 'src/app/core/interfaces/trainers.interface';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
+
 
 
 @Component({
@@ -14,7 +16,11 @@ import { MatDialog } from '@angular/material/dialog';
 export class ProgramsAddEditComponent implements OnInit {
   programForm: FormGroup<any>;
   trainers: Trainer[] = [];
+  
   trainingModes:string[] = ['Online', 'Offline'];
+  trainingStatus: string[] = ['Scheduled', 'Completed', 'Cancelled'];
+  selectedStatus: string = 'Scheduled';
+
 
   constructor(
     private fb: FormBuilder,

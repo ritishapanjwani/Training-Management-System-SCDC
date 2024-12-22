@@ -42,27 +42,36 @@
                 {{val}}
                 </mat-option>
             </mat-select>
-          </mat-form-field>
-
-        <mat-form-field appearance="outline" class="content">
-            <mat-label>Hour</mat-label>
-            <input matInput type="text" placeholder="No of hours">
-        </mat-form-field>
+          </mat-form-field>    
+         
+        <mat-form-field class="content">
+          <mat-label>Status</mat-label>
+          <mat-select [(value)]="selectedStatus">
+              <mat-option *ngFor="let val of trainingStatus" [value]="val">
+              {{val}}
+              </mat-option>
+          </mat-select>
+        </mat-form-field>      
     </div>
     <div class="row">
         <mat-form-field appearance="outline" class="content">
-            <mat-label>Module</mat-label>
-            <input matInput type="text" placeholder="Module name">
+            <mat-label>Start Time</mat-label>
+            <input matInput type="text" placeholder="Start Time">
+            <mat-hint>11:00 AM</mat-hint>
+
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="content">
+            <mat-label>End Time</mat-label>
+            <input matInput type="text" placeholder="End Time">
+            <mat-hint>1:00 PM</mat-hint>
         </mat-form-field>
 
         <mat-form-field appearance="outline" class="content">
             <mat-label>Hour</mat-label>
             <input matInput type="text" placeholder="No of hours">
         </mat-form-field>
-        <mat-form-field appearance="outline" class="content">
-            <mat-label>Hour</mat-label>
-                <input matInput type="text" placeholder="No of hours">
-        </mat-form-field>
+
     </div>
 </div>
 <div mat-dialog-actions>
