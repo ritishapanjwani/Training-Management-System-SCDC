@@ -4,30 +4,30 @@ import { Observable } from 'rxjs';
 import { Program } from '../interfaces/programs.interface';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class ProgramService {
-  private apiUrl = 'http://localhost:3000/api/programs'; // Adjust URL as needed
+  private baseUrl = 'http://localhost:3000/api/programs'; // Update with your API URL
 
   constructor(private http: HttpClient) {}
 
-  getAllPrograms(): Observable<Program[]> {
-    return this.http.get<Program[]>(this.apiUrl);
+  // Fetch all programs
+  getPrograms(): Observable<Program[]> {
+    return this.http.get<Program[]>(this.baseUrl);
   }
 
-  getProgramById(id: string): Observable<Program> {
-    return this.http.get<Program>(`${this.apiUrl}/${id}`);
+  // Add a new program
+  addProgram(program: Program): Observable<Program> {
+    return this.http.post<Program>(this.baseUrl, program);
   }
 
-  createProgram(program: Omit<Program, '_id'>): Observable<Program> {
-    return this.http.post<Program>(this.apiUrl, program);
+  // Update an existing program
+  updateProgram(id: string, program: Program): Observable<Program> {
+    return this.http.put<Program>(`${this.baseUrl}/${id}`, program);
   }
 
-  updateProgram(id: string, program: Partial<Program>): Observable<Program> {
-    return this.http.put<Program>(`${this.apiUrl}/${id}`, program);
-  }
-
-  deleteProgram(id: string): Observable<any> {
-    return this.http.delete(`${this.apiUrl}/${id}`);
+  // Delete a program
+  deleteProgram(id: string): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 }

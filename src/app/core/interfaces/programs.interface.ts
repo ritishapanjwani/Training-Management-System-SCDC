@@ -9,7 +9,7 @@ export interface Program{
     endDate: Date;
     time: string;
     trainingMode: 'Online' | 'Offline';
-    trainer: string | Trainer; // Can be either ID string or populated Trainer object
+    trainer:Trainer; // Can be either ID string or populated Trainer object
     status: 'Scheduled' | 'Ongoing' | 'Completed';
     referenceNotes?: string;
     createdAt?: Date;
