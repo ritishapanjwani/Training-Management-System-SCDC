@@ -7,6 +7,7 @@ import { Program } from '../interfaces/programs.interface';
   providedIn: 'root',
 })
 export class ProgramService {
+
   private baseUrl = 'http://localhost:3000/api/programs'; // Update with your API URL
 
   constructor(private http: HttpClient) {}
@@ -19,7 +20,9 @@ export class ProgramService {
   // Add a new program
   addProgram(program: Program): Observable<Program> {
     return this.http.post<Program>(this.baseUrl, program);
+    console.log("Going data", program);
   }
+
 
   // Update an existing program
   updateProgram(id: string, program: Program): Observable<Program> {
@@ -30,4 +33,6 @@ export class ProgramService {
   deleteProgram(id: string): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
+
+
 }

@@ -7,6 +7,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { __values } from 'tslib';
 import {COMMA, ENTER} from '@angular/cdk/keycodes'
 import { MatChipInputEvent } from '@angular/material/chips';
+import { Program } from 'src/app/core/interfaces/programs.interface';
 
 
 
@@ -65,19 +66,59 @@ export class ProgramsAddEditComponent implements OnInit {
     });
   }
  
+  private formatDate(date: Date): string {
+    if (!date) return '';
+    return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
+  }
+
+  private validateTime(time: string): string {
+    // Basic time validation and formatting
+    if (!time) return '';
+    
+    // If time is already in correct format (e.g., "11:00 AM"), return it
+    if (/^(0?[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/.test(time)) {
+      return time;
+    }
+    
+    // If time needs formatting, return empty string or implement additional formatting
+    return '';
+  }
   onFormSubmit() {
-    this.programForm.markAllAsTouched(); // Mark all fields as touched to trigger validation
-  
     if (this.programForm.valid) {
-      console.log(this.programForm.value);
-      // Handle form submission
-    } else {
-      console.log("Form is invalid");
-      const topicsArray = this.programForm.get('topics') as FormArray;
-      if (topicsArray.errors) {
-        console.log('Topics errors:', topicsArray.errors);
+      // Create a copy of the form values
+      const formData = { ...this.programForm.value };
+
+      // Format dates
+      if (formData.startDate) {
+        formData.startDate = this.formatDate(new Date(formData.startDate));
       }
-      // Log all form errors
+      if (formData.endDate) {
+        formData.endDate = this.formatDate(new Date(formData.endDate));
+      }
+
+      // Validate times
+      formData.startTime = this.validateTime(formData.startTime);
+      formData.endTime = this.validateTime(formData.endTime);
+
+      // Log the formatted data
+      console.log('Formatted form data:', formData);
+
+      // Submit to service
+      this.programService.addProgram(formData).subscribe({
+        next: (response) => {
+          console.log("Program added successfully!", response);
+          alert('Program Added successfully');
+        },
+        error: (error) => {
+          console.error('Error saving program:', error);
+          alert('An error occurred while saving the program.');
+        }
+      });
+    } else {
+      this.programForm.markAllAsTouched();
+      console.log("Form is invalid");
+      
+      // Log validation errors
       Object.keys(this.programForm.controls).forEach(key => {
         const control = this.programForm.get(key);
         if (control?.errors) {
@@ -86,9 +127,7 @@ export class ProgramsAddEditComponent implements OnInit {
       });
     }
   }
- 
 
- 
  
 
 

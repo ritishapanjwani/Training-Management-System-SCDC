@@ -12,7 +12,6 @@ export interface Program{
     trainingMode: 'Online' | 'Offline';
     trainer:string; 
     status: 'Scheduled' | 'Ongoing' | 'Completed';
-    referenceNotes?: string;
-    createdAt?: Date;
-    updatedAt?: Date;
+    
 }
+   
