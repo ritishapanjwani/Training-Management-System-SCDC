@@ -19,9 +19,12 @@ import { Program } from 'src/app/core/interfaces/programs.interface';
 })
 export class ProgarmsListComponent implements OnInit{
   // programForm: FormGroup;
-  displayedColumns: string[] = ['module', 'trainer', 'trainingMode', 'status','startDate','endDate','startTime','endTime','dayHour', 'topics'];
-  dataSource!: MatTableDataSource<any>;
-  programs: Program[] | null = null;
+  // displayedColumns: string[] = ['module', 'trainer', 'trainingMode', 'status','startDate','endDate','startTime','endTime','dayHour', 'topics'];
+  // dataSource!: MatTableDataSource<any>;
+  // programs: Program[] | null = null;
+
+  programs: Program[] = [];
+  groupedPrograms: any[] = [];
 
 
 
@@ -36,17 +39,58 @@ export class ProgarmsListComponent implements OnInit{
     this.fetchProgramDetails();
   }
 
+  // fetchProgramDetails(): void {
+  //   this.programService.getPrograms().subscribe({
+  //     next: (programs: Program[]) => {
+  //       console.log('Programs fetched:', programs);
+  //       this.programs = programs; // Assign fetched data to the local variable
+  //     },
+  //     error: (err) => {
+  //       console.error('Error fetching programs:', err);
+  //     }
+  //   });
+  // }
+
   fetchProgramDetails(): void {
     this.programService.getPrograms().subscribe({
       next: (programs: Program[]) => {
         console.log('Programs fetched:', programs);
-        this.programs = programs; // Assign fetched data to the local variable
+        this.groupProgramsByModule(programs); // Group the fetched programs by module
       },
       error: (err) => {
         console.error('Error fetching programs:', err);
       }
     });
   }
+
+
+  groupProgramsByModule(programs: Program[]): void {
+    // Define the accumulator type explicitly
+    const grouped: { [key: string]: { module: string; trainers: Program[] } } = programs.reduce(
+      (acc, program) => {
+        // Check if the module is already in the accumulator
+        if (!acc[program.module]) {
+          acc[program.module] = {
+            module: program.module,
+            trainers: [program], // Initialize with the current program as the first trainer
+          };
+        } else {
+          // If the module exists, add the program to the trainers array
+          acc[program.module].trainers.push(program);
+        }
+        return acc;
+      },
+      {} as { [key: string]: { module: string; trainers: Program[] } } // Initialize the accumulator with the correct type
+    );
+  
+    // Convert the grouped object into an array to bind to the template
+    this.groupedPrograms = Object.values(grouped);
+  }
+  
+
+  
+
+
 
   editProgram(program: Program): void {
     console.log('Edit program clicked for:', program);

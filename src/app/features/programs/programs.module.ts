@@ -20,6 +20,9 @@ import {MatSelectModule} from '@angular/material/select';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+
 
 
 
@@ -52,12 +55,9 @@ import { MatPaginatorModule } from '@angular/material/paginator';
     MatSelectModule,
     MatSnackBarModule,
     MatTableModule,
-    MatPaginatorModule
-    
-    
-    
-    
-    
+    MatPaginatorModule,
+    MatCardModule,
+    MatDividerModule
   ]
 })
 export class ProgramsModule { }

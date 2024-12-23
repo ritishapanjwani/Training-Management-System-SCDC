@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProgramService } from 'src/app/core/services/programs.service';
 import { TrainerService } from 'src/app/core/services/trainers.service';
-import { Trainer } from 'src/app/core/interfaces/trainers.interface';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { __values } from 'tslib';
@@ -51,20 +50,20 @@ export class ProgramsAddEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.loadTrainerNames();
+    // this.loadTrainerNames();
   }
 
-  private loadTrainerNames() {
-    this.trainerService.getTrainerNames().subscribe({
-      next: (names) => {
-        this.trainerNames = names;
-        console.log(this.trainerNames);
-      },
-      error: (error) => {
-        console.error('Error loading trainer names:', error);
-      }
-    });
-  }
+  // private loadTrainerNames() {
+  //   this.trainerService.getTrainerNames().subscribe({
+  //     next: (names) => {
+  //       this.trainerNames = names;
+  //       console.log(this.trainerNames);
+  //     },
+  //     error: (error) => {
+  //       console.error('Error loading trainer names:', error);
+  //     }
+  //   });
+  // }
  
   private formatDate(date: Date): string {
     if (!date) return '';
