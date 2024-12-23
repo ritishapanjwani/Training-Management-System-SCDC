@@ -7,9 +7,10 @@ export interface Program{
     dayHour: number;
     startDate: Date;
     endDate: Date;
-    time: string;
+    startTime: string;
+    endTime: string;
     trainingMode: 'Online' | 'Offline';
-    trainer:Trainer; // Can be either ID string or populated Trainer object
+    trainer:string; 
     status: 'Scheduled' | 'Ongoing' | 'Completed';
     referenceNotes?: string;
     createdAt?: Date;

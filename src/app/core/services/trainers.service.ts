@@ -1,7 +1,7 @@
 // services/trainer.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { Trainer } from '../interfaces/trainers.interface';
 
 @Injectable({
@@ -18,6 +18,11 @@ export class TrainerService {
 
   getTrainerById(id: string): Observable<Trainer> {
     return this.http.get<Trainer>(`${this.apiUrl}/${id}`);
+  }
+  getTrainerNames(): Observable<string[]> {
+    return this.http.get<Trainer[]>(this.apiUrl).pipe(
+      map((trainers: any[]) => trainers.map(trainer => trainer.name))
+    );
   }
 
   createTrainer(trainer: Omit<Trainer, '_id'>): Observable<Trainer> {
