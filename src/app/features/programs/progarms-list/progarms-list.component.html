@@ -7,3 +7,36 @@
     <span>New Program</span>
   </button> 
 </mat-toolbar>
+<div class="program-container">
+  <div
+    *ngFor="let program of programs"
+    class="program-card"
+    fxLayout="column"
+    fxLayoutAlign="start stretch"
+    fxLayoutGap="10px"
+  >
+    <div class="program-header">
+      <h2 class="program-title">{{ program.module }}</h2>
+      <p class="program-status" [ngClass]="program.status.toLowerCase()">
+        {{ program.status }}
+      </p>
+    </div>
+    <div class="program-details">
+      <p><strong>Trainer:</strong> {{ program.trainer }}</p>
+      <p><strong>Mode:</strong> {{ program.trainingMode }}</p>
+      <p><strong>Topics:</strong> {{ program.topics.join(', ') }}</p>
+      <p>
+        <strong>Time:</strong> {{ program.startTime }} - {{ program.endTime }}
+      </p>
+      <p>
+        <strong>Dates:</strong> {{ program.startDate }} to {{ program.endDate }}
+      </p>
+    </div>
+    <div class="program-actions">
+      <button class="btn edit" (click)="editProgram(program)">Edit</button>
+      <button class="btn delete" (click)="deleteProgram(program.module)">
+        Delete
+      </button>
+    </div>
+  </div>
+</div>

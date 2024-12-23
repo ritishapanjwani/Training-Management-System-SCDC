@@ -1,10 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
 import { ProgramService } from 'src/app/core/services/programs.service';
-import { TrainerService } from 'src/app/core/services/trainers.service';
-import { Trainer } from 'src/app/core/interfaces/trainers.interface';
 import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ProgramsAddEditComponent } from './programs-add-edit/programs-add-edit.component';
+import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
+import {MatSort, MatSortModule} from '@angular/material/sort';
+import {MatTableDataSource, MatTableModule} from '@angular/material/table';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import { Program } from 'src/app/core/interfaces/programs.interface';
 
 
 
@@ -14,55 +18,45 @@ import { ProgramsAddEditComponent } from './programs-add-edit/programs-add-edit.
   styleUrls: ['./progarms-list.component.scss']
 })
 export class ProgarmsListComponent implements OnInit{
-  programForm: FormGroup;
-  trainers: Trainer[] = []; // List of trainers (populate from API)
+  // programForm: FormGroup;
+  displayedColumns: string[] = ['module', 'trainer', 'trainingMode', 'status','startDate','endDate','startTime','endTime','dayHour', 'topics'];
+  dataSource!: MatTableDataSource<any>;
+  programs: Program[] | null = null;
 
-  constructor(private fb: FormBuilder, private programService: ProgramService, private trainerService:TrainerService, private dialog:MatDialog) {
-    this.programForm = this.fb.group({
-      module: ['', Validators.required],
-      topics: this.fb.array([], Validators.required), // Dynamic array for topics
-      dayHour: [0, [Validators.required, Validators.min(1)]],
-      startDate: ['', Validators.required],
-      endDate: ['', Validators.required],
-      time: ['', Validators.required],
-      trainingMode: ['Online', Validators.required],
-      trainer: ['', Validators.required],
-      status: ['Scheduled', Validators.required],
-      referenceNotes: [''],
-    });
+
+
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatSort) sort!: MatSort;
+
+  constructor(private fb: FormBuilder, private programService: ProgramService, private dialog:MatDialog) {
+
   }
 
   ngOnInit(): void {
-    this.loadTrainers();
+    this.fetchProgramDetails();
   }
 
-  // Get the topics FormArray
-  get topics(): FormArray {
-    return this.programForm.get('topics') as FormArray;
-  }
-
-  // Add a new topic field
-  addTopic(): void {
-    this.topics.push(this.fb.control(''));
-  }
-
-  // Remove a topic field
-  removeTopic(index: number): void {
-    this.topics.removeAt(index);
-  }
-
-  loadTrainers(): void {
-    this.trainerService.getAllTrainers().subscribe(
-      (data) => {
-        this.trainers = data;
-        console.log('Trainers loaded successfully', this.trainers);
+  fetchProgramDetails(): void {
+    this.programService.getPrograms().subscribe({
+      next: (programs: Program[]) => {
+        console.log('Programs fetched:', programs);
+        this.programs = programs; // Assign fetched data to the local variable
       },
-      (error) => {
-        console.error('Error loading trainers', error);
+      error: (err) => {
+        console.error('Error fetching programs:', err);
       }
-    );
+    });
   }
 
+  editProgram(program: Program): void {
+    console.log('Edit program clicked for:', program);
+    // Add logic to navigate or open a modal for editing the program
+  }
+  // Event handler for delete button
+  deleteProgram(programId: string): void {
+    console.log('Delete program clicked for ID:', programId);
+    // Add logic to delete the program
+  }
 
   openAddEditForm() {
     this.dialog.open(ProgramsAddEditComponent);
