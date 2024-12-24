@@ -9,6 +9,7 @@ import {MatTableDataSource, MatTableModule} from '@angular/material/table';
 import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { Program } from 'src/app/core/interfaces/programs.interface';
+import { SnackBarService } from 'src/app/core/services/snackBar.service';
 
 
 
@@ -18,10 +19,7 @@ import { Program } from 'src/app/core/interfaces/programs.interface';
   styleUrls: ['./progarms-list.component.scss']
 })
 export class ProgarmsListComponent implements OnInit{
-  // programForm: FormGroup;
-  // displayedColumns: string[] = ['module', 'trainer', 'trainingMode', 'status','startDate','endDate','startTime','endTime','dayHour', 'topics'];
-  // dataSource!: MatTableDataSource<any>;
-  // programs: Program[] | null = null;
+ 
 
   programs: Program[] = [];
   groupedPrograms: any[] = [];
@@ -31,7 +29,7 @@ export class ProgarmsListComponent implements OnInit{
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private fb: FormBuilder, private programService: ProgramService, private dialog:MatDialog) {
+  constructor(private fb: FormBuilder, private programService: ProgramService, private dialog:MatDialog, private snackBar: SnackBarService) {
 
   }
 
@@ -86,24 +84,65 @@ export class ProgarmsListComponent implements OnInit{
     // Convert the grouped object into an array to bind to the template
     this.groupedPrograms = Object.values(grouped);
   }
+
+
   
 
   
 
 
 
-  editProgram(program: Program): void {
-    console.log('Edit program clicked for:', program);
-    // Add logic to navigate or open a modal for editing the program
-  }
+ 
   // Event handler for delete button
-  deleteProgram(programId: string): void {
-    console.log('Delete program clicked for ID:', programId);
-    // Add logic to delete the program
+  deleteProgram(id: string): void {
+    console.log('Delete program clicked for ID:', id);
+    this.programService.deleteProgram(id).subscribe({
+      next:(response)=>{
+        console.log('Program deleted:', response);
+        this.snackBar.openSnackBar('Program deleted', 'Success');
+        this.fetchProgramDetails();
+      }
+    })
+    
+  }
+  editPorgram(id:string, program: Program):void{
+    console.log('Edit program clicked for:', program);
+
+    this.programService.updateProgram(id,program).subscribe({
+    next:(respons)=>{
+      console.log('Program updated:', respons);
+      this.snackBar.openSnackBar('Program updated', 'Success'); 
+      this.fetchProgramDetails();
+    }
+    });
+    
   }
 
   openAddEditForm() {
-    this.dialog.open(ProgramsAddEditComponent);
+   const dialogRef = this.dialog.open(ProgramsAddEditComponent);
+   dialogRef.afterClosed().subscribe({
+    next:(res)=>{
+      if(res){
+        this.fetchProgramDetails();
+      }
+    }
+   })
+    
+  }
+
+  openEditForm(data:any){
+    const dailogRef= this.dialog.open(ProgramsAddEditComponent,{
+      data:data
+    });
+    dailogRef.afterClosed().subscribe({
+        next:(res)=>{
+          if(res){
+            this.fetchProgramDetails();
+          }
+        }
+       });
+    
+ 
   }
 }
 

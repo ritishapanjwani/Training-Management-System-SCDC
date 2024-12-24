@@ -58,6 +58,6 @@ import { MatDividerModule } from '@angular/material/divider';
     MatPaginatorModule,
     MatCardModule,
     MatDividerModule
-  ]
+    ]
 })
 export class ProgramsModule { }
