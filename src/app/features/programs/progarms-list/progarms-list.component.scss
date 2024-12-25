@@ -185,8 +185,11 @@
   }
 
   .trainer-details {
+    padding-top: 18px;
     p {
       display: flex;
+      padding-bottom: 20px;
+     
       align-items: center;
       margin: 8px 0;
       color: #333;
@@ -241,6 +244,15 @@ mat-card-actions {
   }
 }
 
+
+
+.card-footer{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 17px;
+  border-top: 1px solid #eee;
+}
 
 
 // // program-list.component.scss
@@ -366,13 +378,13 @@ mat-card-actions {
 // }
 
 
-// // .card-footer{
-// //   display: flex;
-// //   justify-content: space-between;
-// //   align-items: center;
-// //   padding: 16px;
-// //   border-top: 1px solid #eee;
-// // }
+// .card-footer{
+//   display: flex;
+//   justify-content: space-between;
+//   align-items: center;
+//   padding: 16px;
+//   border-top: 1px solid #eee;
+// }
 
 
 

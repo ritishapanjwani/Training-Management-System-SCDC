@@ -15,7 +15,7 @@ export class TrainersAddEditComponent implements OnInit {
   groupedTrainers: any[] = [];
   trainerForm!: FormGroup;
   selectedTrainer: any = null;
-  status: string[] = ['Availabel', 'Not Availabel'];
+  status: string[] = ['Available', 'Not Available'];
   // selectedStatus: string = 'Availabel';
 
 

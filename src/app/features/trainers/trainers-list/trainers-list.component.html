@@ -20,17 +20,21 @@
   
         <mat-card-content class="program-content">
           
-
-
-          
+          <div class="trainers-container">
+           
+            <mat-divider></mat-divider>
+              </div>
+              
+            
           <div class="trainer-details">
-            <p><mat-icon>person</mat-icon> Trainer: {{ trainer.trainerName }}</p>
-            <p><mat-icon>schedule</mat-icon> Total Day Hours: {{ trainer.noOfHours }}</p>
+            <p><mat-icon>theaters icon</mat-icon> {{ trainer.businessUnit }}</p>
+            <p><mat-icon>verified</mat-icon> {{trainer.expertise}}</p>
+            <p><mat-icon>schedule icon</mat-icon> Total Assigned Hours: {{ trainer.noOfHours }}</p>
             <div class="modules-topics">
               <h3>Modules and Topics:</h3>
               <div *ngFor="let module of trainer.module; let i = index">
-                <p><strong>Module {{ i + 1 }}:</strong> {{ module }}</p>
-                <p><strong>Topics:</strong> {{ trainer.topics[i]}}</p>
+                <p><mat-icon>topic</mat-icon>{{module}}</p>
+                <p><mat-icon>article</mat-icon>{{trainer.topics[i]}}</p>
               </div>
             </div>
           </div>
