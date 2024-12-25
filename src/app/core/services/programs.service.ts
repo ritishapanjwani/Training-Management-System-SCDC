@@ -34,5 +34,8 @@ export class ProgramService {
     return this.http.delete<void>(`${this.baseUrl}/${id}`);
   }
 
+  getGroupedTrainers(): Observable<any>{
+    return this.http.get<any>(`${this.baseUrl}/trainerGroup`);
+  }
 
 }

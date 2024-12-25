@@ -22,6 +22,9 @@ import {MatTableModule} from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from '@angular/material/divider';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+
 
 
 
@@ -57,7 +60,9 @@ import { MatDividerModule } from '@angular/material/divider';
     MatTableModule,
     MatPaginatorModule,
     MatCardModule,
-    MatDividerModule
-    ]
+    MatDividerModule,
+    BrowserAnimationsModule
+    ],
+    exports:[ProgarmsListComponent]
 })
 export class ProgramsModule { }

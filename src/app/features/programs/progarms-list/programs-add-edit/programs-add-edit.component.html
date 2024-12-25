@@ -41,7 +41,7 @@
             <mat-label>Training Mode</mat-label>
             <mat-select formControlName="trainingMode">
                 <mat-option *ngFor="let val of trainingModes" [value]="val">
-                {{val}}
+                  {{val}}
                 </mat-option>
             </mat-select>
           </mat-form-field>    
@@ -73,7 +73,7 @@
           <mat-label>Trainer</mat-label>
           <input matInput type="text" placeholder="Trainer Name" formControlName="trainer">
         </mat-form-field> 
-        <!-- <mat-form-field class="content">
+        <!-- <mat-form-field class="content">//  for later
           <mat-label>Trainer</mat-label>
           <mat-select formControlName="module" formControlName="trainer">
               <mat-option *ngFor="let trainer of trainerNames" [value]="trainer">

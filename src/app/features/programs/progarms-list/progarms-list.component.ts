@@ -1,13 +1,7 @@
 import { Component, OnInit,ViewChild } from '@angular/core';
 import { ProgramService } from 'src/app/core/services/programs.service';
-import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
 import { ProgramsAddEditComponent } from './programs-add-edit/programs-add-edit.component';
-import {MatPaginator, MatPaginatorModule} from '@angular/material/paginator';
-import {MatSort, MatSortModule} from '@angular/material/sort';
-import {MatTableDataSource, MatTableModule} from '@angular/material/table';
-import {MatInputModule} from '@angular/material/input';
-import {MatFormFieldModule} from '@angular/material/form-field';
 import { Program } from 'src/app/core/interfaces/programs.interface';
 import { SnackBarService } from 'src/app/core/services/snackBar.service';
 
@@ -21,38 +15,27 @@ import { SnackBarService } from 'src/app/core/services/snackBar.service';
 export class ProgarmsListComponent implements OnInit{
  
 
-  programs: Program[] = [];
-  groupedPrograms: any[] = [];
+  programs: Program[] = [];// holds the fetched programs
+  groupedPrograms: any[] = [];// holds the grouped programs
 
 
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
+ 
 
-  constructor(private fb: FormBuilder, private programService: ProgramService, private dialog:MatDialog, private snackBar: SnackBarService) {
+  constructor( private programService: ProgramService, private dialog:MatDialog, private snackBar: SnackBarService) {
 
   }
 
+  // Lifecycle hook to fetch the programs when the component is initialized
   ngOnInit(): void {
     this.fetchProgramDetails();
   }
 
-  // fetchProgramDetails(): void {
-  //   this.programService.getPrograms().subscribe({
-  //     next: (programs: Program[]) => {
-  //       console.log('Programs fetched:', programs);
-  //       this.programs = programs; // Assign fetched data to the local variable
-  //     },
-  //     error: (err) => {
-  //       console.error('Error fetching programs:', err);
-  //     }
-  //   });
-  // }
 
+  // Function fetches the programs from the service
   fetchProgramDetails(): void {
     this.programService.getPrograms().subscribe({
       next: (programs: Program[]) => {
-        console.log('Programs fetched:', programs);
         this.groupProgramsByModule(programs); // Group the fetched programs by module
       },
       error: (err) => {
@@ -83,6 +66,7 @@ export class ProgarmsListComponent implements OnInit{
   
     // Convert the grouped object into an array to bind to the template
     this.groupedPrograms = Object.values(grouped);
+    console.log('Grouped programs:', this.groupedPrograms);
   }
 
 
@@ -141,8 +125,6 @@ export class ProgarmsListComponent implements OnInit{
           }
         }
        });
-    
- 
   }
 }
 

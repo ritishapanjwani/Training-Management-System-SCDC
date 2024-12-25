@@ -1,14 +1,10 @@
 export interface Trainer {
-    _id?: string;
-    Trainername: string;
+    _id: string;
+    trainerName: string;
     businessUnit: string;
-    expertise: string[];
-    isAvailable: boolean;
-    assignedPrograms: {
-      program: string;
-      module: string;
-    }[];
+    status: 'Avilabel' | 'Not Availabel';
+    expertise: string[],
+    module: string[];
+    topics: string[];
     noOfHours: number;
-    createdAt?: Date;
-    updatedAt?: Date;
   }

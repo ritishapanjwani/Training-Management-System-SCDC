@@ -15,13 +15,14 @@ import { SnackBarService } from 'src/app/core/services/snackBar.service';
 })
 export class ProgramsAddEditComponent implements OnInit {
   programForm: FormGroup<any>;
-  trainerNames: string[] = [];  
+  // trainerNames: string[] = [];  // For later reference
   trainingModes:string[] = ['Online', 'Offline'];
   trainingStatus: string[] = ['Scheduled', 'Completed', 'Cancelled'];
   selectedStatus: string = 'Scheduled';
   topics:string[]  = [];
-  separatorKeysCodes: number[] = [ENTER, COMMA];
+  separatorKeysCodes: number[] = [ENTER,COMMA];
   topicsControl = new FormControl([]);
+
 
 
 
@@ -53,7 +54,7 @@ export class ProgramsAddEditComponent implements OnInit {
   ngOnInit(): void {
     this.programForm.patchValue(this.data);
   }
-// Not used now just for ref
+// Not used now just for ref for future feature
   // private loadTrainerNames() {
   //   this.trainerService.getTrainerNames().subscribe({
   //     next: (names) => {
@@ -80,9 +81,12 @@ export class ProgramsAddEditComponent implements OnInit {
       return time;
     }
     
-    // If time needs formatting, return empty string or implement additional formatting
+    // If time needs formatting, return empty string
     return '';
   }
+
+
+
   onFormSubmit() {
     if (this.programForm.valid) {
 
@@ -208,19 +212,5 @@ get topicsArray(): FormArray {
   setTopics(topics: string[]): void {
     this.topics = [...topics];
   }
-  onSubmit(): void {
-    if (this.programForm.valid) {
-      const formValue = this.programForm.value;
-      this.programService.addProgram(formValue).subscribe({
-        next: (response) => {
-          console.log('Program created successfully:', response);
-          // Handle success
-        },
-        error: (error) => {
-          console.error('Error creating program:', error);
-          // Handle error
-        }
-      });
-    }
-  }
+ 
 }
