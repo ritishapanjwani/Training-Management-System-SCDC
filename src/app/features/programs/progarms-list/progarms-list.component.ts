@@ -1,10 +1,130 @@
-import { Component } from '@angular/core';
+import { Component, OnInit,ViewChild } from '@angular/core';
+import { ProgramService } from 'src/app/core/services/programs.service';
+import { MatDialog } from '@angular/material/dialog';
+import { ProgramsAddEditComponent } from './programs-add-edit/programs-add-edit.component';
+import { Program } from 'src/app/core/interfaces/programs.interface';
+import { SnackBarService } from 'src/app/core/services/snackBar.service';
+
+
 
 @Component({
   selector: 'app-progarms-list',
   templateUrl: './progarms-list.component.html',
   styleUrls: ['./progarms-list.component.scss']
 })
-export class ProgarmsListComponent {
+export class ProgarmsListComponent implements OnInit{
+ 
 
+  programs: Program[] = [];// holds the fetched programs
+  groupedPrograms: any[] = [];// holds the grouped programs
+
+
+
+ 
+
+  constructor( private programService: ProgramService, private dialog:MatDialog, private snackBar: SnackBarService) {
+
+  }
+
+  // Lifecycle hook to fetch the programs when the component is initialized
+  ngOnInit(): void {
+    this.fetchProgramDetails();
+  }
+
+
+  // Function fetches the programs from the service
+  fetchProgramDetails(): void {
+    this.programService.getPrograms().subscribe({
+      next: (programs: Program[]) => {
+        this.groupProgramsByModule(programs); // Group the fetched programs by module
+      },
+      error: (err) => {
+        console.error('Error fetching programs:', err);
+      }
+    });
+  }
+
+
+  groupProgramsByModule(programs: Program[]): void {
+    // Define the accumulator type explicitly
+    const grouped: { [key: string]: { module: string; trainers: Program[] } } = programs.reduce(
+      (acc, program) => {
+        // Check if the module is already in the accumulator
+        if (!acc[program.module]) {
+          acc[program.module] = {
+            module: program.module,
+            trainers: [program], // Initialize with the current program as the first trainer
+          };
+        } else {
+          // If the module exists, add the program to the trainers array
+          acc[program.module].trainers.push(program);
+        }
+        return acc;
+      },
+      {} as { [key: string]: { module: string; trainers: Program[] } } // Initialize the accumulator with the correct type
+    );
+  
+    // Convert the grouped object into an array to bind to the template
+    this.groupedPrograms = Object.values(grouped);
+    console.log('Grouped programs:', this.groupedPrograms);
+  }
+
+
+  
+
+  
+
+
+
+ 
+  // Event handler for delete button
+  deleteProgram(id: string): void {
+    console.log('Delete program clicked for ID:', id);
+    this.programService.deleteProgram(id).subscribe({
+      next:(response)=>{
+        console.log('Program deleted:', response);
+        this.snackBar.openSnackBar('Program deleted', 'Success');
+        this.fetchProgramDetails();
+      }
+    })
+    
+  }
+  editPorgram(id:string, program: Program):void{
+    console.log('Edit program clicked for:', program);
+
+    this.programService.updateProgram(id,program).subscribe({
+    next:(respons)=>{
+      console.log('Program updated:', respons);
+      this.snackBar.openSnackBar('Program updated', 'Success'); 
+      this.fetchProgramDetails();
+    }
+    });
+    
+  }
+
+  openAddEditForm() {
+   const dialogRef = this.dialog.open(ProgramsAddEditComponent);
+   dialogRef.afterClosed().subscribe({
+    next:(res)=>{
+      if(res){
+        this.fetchProgramDetails();
+      }
+    }
+   })
+    
+  }
+
+  openEditForm(data:any){
+    const dailogRef= this.dialog.open(ProgramsAddEditComponent,{
+      data:data
+    });
+    dailogRef.afterClosed().subscribe({
+        next:(res)=>{
+          if(res){
+            this.fetchProgramDetails();
+          }
+        }
+       });
+  }
 }
+

@@ -7,12 +7,13 @@
         </div>
     </div>
 
+
     <div class="menu">
-        <button mat-button class="menu-button" routerLink="/dashboard">
+        <button mat-button class="menu-button" [routerLink]="">
             <mat-icon>dashboard</mat-icon>
             <span>Dashboard</span>
         </button>
-        <button mat-button class="menu-button" routerLink="/program">
+        <button mat-button class="menu-button" [routerLink]="['/program-list']">
             <mat-icon>calendar_today</mat-icon>
             <span>Program</span>
         </button>
@@ -20,7 +21,7 @@
             <mat-icon>people</mat-icon>
             <span>Trainees</span>
         </button>
-        <button mat-button class="menu-button" routerLink="/trainers">
+        <button mat-button class="menu-button" [routerLink]="['/trainers-list']">
             <mat-icon>supervisor_account</mat-icon>
             <span>Trainers</span>
         </button>

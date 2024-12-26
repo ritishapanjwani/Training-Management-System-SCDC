@@ -1,1 +1,57 @@
-<p>progarms-list works!</p>
+<mat-toolbar>
+  <span>Programs</span>
+  <span class="example-spacer"></span>
+
+  <button mat-raised-button color="primary" (click)="openAddEditForm()">
+    <mat-icon>add</mat-icon>
+    <span>New Program</span>
+  </button>
+</mat-toolbar>
+  <div class="programs-container">
+    <div class="program-grid">
+      <mat-card class="program-card" *ngFor="let programGroup of groupedPrograms">
+        <mat-card-header>
+          <mat-card-title>{{ programGroup.module }}</mat-card-title>
+          <div class="status-badge" [ngClass]="programGroup.trainers[0].status.toLowerCase()">
+            {{ programGroup.trainers[0].status }}
+          </div>
+        </mat-card-header>
+
+        <mat-card-content class="program-content">
+          <div class="trainers-container">
+            <div *ngFor="let program of programGroup.trainers; let i = index" class="trainer-section">
+              <div class="trainer-header">
+                <h3>Trainer {{ i + 1 }}</h3>
+                <mat-divider></mat-divider>
+              </div>
+
+              <div class="trainer-details">
+                <p><mat-icon>person</mat-icon> {{ program.trainer }}</p>
+                <p><mat-icon>computer</mat-icon> {{ program.trainingMode }}</p>
+                <p><mat-icon>topic</mat-icon> {{ program.topics.join(', ') }}</p>
+                <p><mat-icon>schedule</mat-icon> {{ program.startTime }} - {{ program.endTime }}</p>
+                <p><mat-icon>date_range</mat-icon> {{ program.startDate | date }} to {{ program.endDate | date }}</p>
+                <div class="card-footer">
+                  <button mat-button color="primary" (click)="openEditForm(program)">
+
+                    <mat-icon>edit</mat-icon>   Edit
+                  </button>
+                  <button mat-button color="warn" (click)="deleteProgram(program._id)">
+                    <mat-icon>delete</mat-icon> Delete
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </mat-card-content>
+
+        <!-- <div class="card-footer"> -->
+          <!-- <mat-card-actions  *ngFor="let program of programGroup.trainers; let i= index">
+
+
+          </mat-card-actions> -->
+        <!-- </div> -->
+
+      </mat-card>
+    </div>
+  </div>
