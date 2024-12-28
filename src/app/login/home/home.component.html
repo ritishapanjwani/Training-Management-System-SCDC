@@ -1,0 +1,47 @@
+<!-- home.component.html -->
+<div class="home-container">
+  <!-- Header Section -->
+  <header>
+    <div class="header-content">
+      <div class="logo-company-name">
+        <img src="https://media.glassdoor.com/sql/222338/solugenix-corporation-squareLogo-1706902653050.png" alt="Company Logo">
+        <h1>SOLUGENIX</h1>
+      </div>
+      <nav>
+        <ul>
+          <li><a routerLink="/home">Home</a></li>
+          <li><a routerLink="/about">About</a></li>
+          <li><a routerLink="/contact">Contact Us</a></li>
+          <li><a routerLink="/login">Login</a></li>
+          <li><a routerLink="/register">Register</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Section -->
+  <section class="main-content">
+    <div class="left-side">
+      <img src="https://static.vecteezy.com/system/resources/thumbnails/004/154/417/small_2x/teamwork-or-team-building-office-business-meeting-conference-and-brainstorming-annual-report-and-statistics-graphics-discussion-and-planning-in-flat-style-free-vector.jpg" height="300px" width="600px" alt="Left Image">
+    </div>
+    <div class="right-side">
+      <div class="welcome-message">
+        <h3>Solugenix Competency Center Training</h3><br>
+        <p>Welcome to Our Training Program</p>
+        <!-- Redirect to login page using Angular routing -->
+        <button routerLink="/login" class="btn btn-primary">Login</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer Section -->
+  <footer>
+    <p>Office Address: Solugenix India Private Ltd<br>
+      Floors 5-8, Block - B, Roxana Towers
+      Greenlands, Begumpet
+      Hyderabad -500081 Telangana, India <br>
+    </p>
+    <p>Contact Us: 91-40-2375-4140</p>
+    <p><a href="https://www.solugenix.com" target="_blank">Visit Our Website</a></p>
+  </footer>
+</div>

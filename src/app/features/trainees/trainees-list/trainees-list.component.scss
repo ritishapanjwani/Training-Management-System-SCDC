@@ -1,0 +1,121 @@
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.programs-container {
+  padding: 20px;
+  height: calc(100vh - 84px); // Subtract toolbar height
+  overflow-y: auto;
+}
+
+.program-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 24px;
+  max-width: 1600px;
+  margin: 0 auto;
+}
+
+.program-card {
+  height: auto;
+  display: flex;
+  flex-direction: column;
+
+
+  mat-card-header {
+    padding: 16px;
+    position: relative;
+
+    mat-card-title {
+      font-size: 1.5rem;
+      font-weight: 500;
+      margin-right: 80px; // Space for status badge
+    }
+  }
+
+  .status-badge {
+    position: absolute;
+    right: 16px;
+    top: 16px;
+    padding: 4px 12px;
+    border-radius: 16px;
+    font-size: 0.875rem;
+    font-weight: 500;
+
+    // &.scheduled {
+    //   background-color: #fff3cd;
+    //   color: #856404;
+    // }
+
+
+    // &.completed {
+    //   background-color: #d4edda;
+    //   color: #155724;
+    // }
+    &.in.training {
+      background-color: #cce5ff;  // Light blue
+      color: #004085; // Dark blue
+    }
+
+    &.completed {
+      background-color: #d4edda;  // Light green
+      color: #155724;  // Dark green
+    }
+
+    &.on.leave {
+      background-color: #f8d7da;  // Light red
+      color: #721c24; // Dark red
+    }
+  }
+}
+
+.program-content {
+  flex: 1;
+  overflow: hidden;
+  padding: 0 !important;
+  // animation: fadeIn 1s forwards;
+  // transition: opacity 0.5s ease-in-out;
+  // animation: fadeIn 0.5s ease forwards;
+
+}
+
+.trainer-details {
+  padding: 16px;
+
+  p {
+    display: flex;
+    align-items: center;
+    margin: 8px 0;
+    color: #333;
+
+    mat-icon {
+      font-size: 18px;
+      width: 18px;
+      height: 18px;
+      margin-right: 8px;
+      color: #666;
+    }
+  }
+
+  .modules-topics {
+    margin-top: 16px;
+
+    h3 {
+      font-size: 1.2rem;
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+
+    p {
+      margin: 4px 0;
+    }
+  }
+}
+
+mat-card-actions {
+  padding: 16px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+  border-top: 1px solid #eee;
+}

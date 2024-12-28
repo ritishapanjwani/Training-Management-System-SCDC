@@ -16,7 +16,7 @@ export class TrainersAddEditComponent implements OnInit {
   trainerForm!: FormGroup;
   selectedTrainer: any = null;
   status: string[] = ['Available', 'Not Available'];
-  // selectedStatus: string = 'Availabel';
+  // selectedStatus: string = 'Available';
 
 
   constructor(
@@ -30,7 +30,7 @@ export class TrainersAddEditComponent implements OnInit {
     this.trainerForm = this.fb.group({
       trainerName: ['', Validators.required],
       businessUnit: ['', Validators.required],
-      status: ['Avilabel', Validators.required],
+      status: ['Availabel', Validators.required],
       expertise:[''],
       modules: ['', Validators.required],
       topics: ['', Validators.required],
@@ -51,8 +51,8 @@ export class TrainersAddEditComponent implements OnInit {
         expertise: this.data.expertise,
         status: this.data.status || 'Available'
 
-        
-        
+
+
       });
 
       console.log('Patched Status:', this.trainerForm.get('status')?.value);
@@ -60,12 +60,12 @@ export class TrainersAddEditComponent implements OnInit {
       this.programService.getGroupedTrainers().subscribe({
         next: (response) => {
           this.groupedTrainers = response;
-  
+
           // Find the corresponding trainer object
           const selectedTrainer = this.groupedTrainers.find(
             (trainer) => trainer.trainer === this.data.trainerName
           );
-  
+
           if (selectedTrainer) {
             this.trainerForm.patchValue({ trainerName: selectedTrainer });
           }
@@ -128,22 +128,22 @@ export class TrainersAddEditComponent implements OnInit {
   onFormSubmit(): void {
     if (this.trainerForm.valid) {
 
-     
-     
+
+
       const formData = { ...this.trainerForm.value };
       console.log(formData);
 
       // Normalize trainerName and extract nested fields
-      formData.trainerName = formData.trainerName.trainer; 
+      formData.trainerName = formData.trainerName.trainer;
 
-      formData.module = formData.modules 
-      formData.topics = formData.topics   
-      formData.noOfHours = formData.noOfHours 
+      formData.module = formData.modules
+      formData.topics = formData.topics
+      formData.noOfHours = formData.noOfHours
       if(this.data){
         this.trainerService.updateTrainer(this.data._id,formData).subscribe({
           next:(res)=>{
             console.log('Trainer updated:', res);
-            
+
             this.snackBar.openSnackBar('Trainer updated', 'Success');
             this.dialogRef.close(true);
           },
@@ -151,12 +151,12 @@ export class TrainersAddEditComponent implements OnInit {
             console.error('Error updating trainer:', error);
            this.snackBar.openSnackBar('error updating trainer', 'Failed')
          }});
-        
+
       }
       else {
-    
-    
-      //Sending data to api 
+
+
+      //Sending data to api
       this.trainerService.createTrainer(formData).subscribe({
         next:(res)=>{
           console.log("Trainer added successfully!", res);
@@ -172,7 +172,7 @@ export class TrainersAddEditComponent implements OnInit {
   }
      else {
       this.markFormGroupTouched(this.trainerForm);
-      
+
     }
   }
 
@@ -189,5 +189,5 @@ export class TrainersAddEditComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  
+
 }

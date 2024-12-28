@@ -11,7 +11,7 @@ mat-sidenav-content{
     }
     .menu-btn{
     cursor: pointer;
-    margin-left: -14px;
+
 
     // &:hover {
     //     cursor: pointer;
@@ -34,6 +34,9 @@ mat-toolbar{
 .company-logo{
     width: 100px;
     height: 100px;
-    margin-left: 50px;
-    margin-top: 20px;
+
+}
+.logo{
+  display:flex;
+  padding-bottom:10px;
 }

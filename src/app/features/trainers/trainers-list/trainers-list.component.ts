@@ -11,11 +11,11 @@ import { TrainerService } from 'src/app/core/services/trainers.service';
   selector: 'app-trainers-list',
   templateUrl: './trainers-list.component.html',
   styleUrls: ['./trainers-list.component.scss']
-})  
+})
 export class TrainersListComponent implements OnInit {
   trainers: Trainer[] = [];
 
- 
+
 
   constructor(private trainerService: TrainerService, private dialog: MatDialog, private snackBar: SnackBarService) {}
 
@@ -60,7 +60,7 @@ this.trainerService.getAllTrainers().subscribe({
         }
       }
      })
-      
+
     }
 
     openEditForm(data:any){

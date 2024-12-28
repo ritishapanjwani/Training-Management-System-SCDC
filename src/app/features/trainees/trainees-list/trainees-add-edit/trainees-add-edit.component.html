@@ -1,1 +1,168 @@
-<p>trainees-add-edit works!</p>
+<div mat-dialog-title class="test">
+  <h1>
+      Add Trainee Details
+  </h1>
+</div>
+<form [formGroup]="traineeForm" (ngSubmit)="onFormSubmit()" >
+  <div mat-dialog-content class="container">
+    <div class="row">
+      <mat-form-field appearance="outline" class="content">
+        <mat-label>Name</mat-label>
+        <input matInput type="text" placeholder="Trainee Name" formControlName="name">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="content">
+        <mat-label>Hiring Business Unit </mat-label>
+        <input matInput type="text" placeholder="Hiring Business Unit"  formControlName="hiringBusinessUnit">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="content">
+        <mat-label>Joining Date</mat-label>
+        <input matInput placeholder="Joining Date" [matDatepicker]="joinPicker" formControlName="joiningDate">
+        <mat-hint>MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="joinPicker"></mat-datepicker-toggle>
+        <mat-datepicker #joinPicker></mat-datepicker>
+      </mat-form-field>
+
+    </div>
+    <div class="row">
+      <mat-form-field appearance="outline" class="content">
+        <mat-label>Location </mat-label>
+        <input matInput type="text" placeholder="Location"  formControlName="location">
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="content">
+        <mat-label>Mapped Business Unit </mat-label>
+        <input matInput type="text" placeholder="mappedBusinessUnit" formControlName="mappedBusinessUnit">
+      </mat-form-field>
+
+      <mat-form-field class="content">
+        <mat-label>Current Status</mat-label>
+        <mat-select formControlName="currentStatus">
+          <mat-option *ngFor="let val of currentStatusOptions" [value]="val">
+            {{val}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+
+    <div mat-dialog-actions class="action">
+      <button mat-button type="button" (click)="onCancel()">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!traineeForm.valid">
+        {{data? 'Update':'Save'}}
+      </button>
+    </div>
+  </div>
+</form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- <div class="container">
+  <h2>Add Program</h2>
+
+  <form [formGroup]="programForm">
+    <div class="form-row">
+      <mat-form-field>
+        <mat-label>Module</mat-label>
+        <input matInput formControlName="module">
+      </mat-form-field> -->
+
+<!-- Topics Form Array -->
+<!-- <div formArrayName="topics" class="topics-container">
+        <h3>Topics</h3>
+        <div *ngFor="let topic of topicsArray.controls; let i=index" class="topic-row">
+          <mat-form-field>
+            <mat-label>Topic {{i + 1}}</mat-label>
+            <input matInput [formControlName]="i" placeholder="Enter topic">
+            <button mat-icon-button matSuffix type="button" (click)="removeTopic(i)">
+              <mat-icon>close</mat-icon>
+            </button>
+          </mat-form-field>
+        </div>
+        <button mat-stroked-button type="button" (click)="addTopic()" color="primary">
+          <mat-icon>add</mat-icon> Add Topic
+        </button>
+      </div> -->
+
+<!-- <mat-form-field>
+        <mat-label>Day/Hour</mat-label>
+        <input matInput type="number" formControlName="dayHour">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Start Date</mat-label>
+        <input matInput [matDatepicker]="startPicker" formControlName="startDate">
+        <mat-datepicker-toggle matSuffix [for]="startPicker"></mat-datepicker-toggle>
+        <mat-datepicker #startPicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>End Date</mat-label>
+        <input matInput [matDatepicker]="endPicker" formControlName="endDate">
+        <mat-datepicker-toggle matSuffix [for]="endPicker"></mat-datepicker-toggle>
+        <mat-datepicker #endPicker></mat-datepicker>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Time</mat-label>
+        <input matInput type="time" formControlName="time">
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Training Mode</mat-label>
+        <mat-select formControlName="trainingMode">
+          <mat-option value="Online">Online</mat-option>
+          <mat-option value="Offline">Offline</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Trainer</mat-label>
+        <mat-select formControlName="trainer">
+          <mat-option *ngFor="let trainer of trainers" [value]="trainer._id">
+            {{trainer.Trainername}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status">
+          <mat-option value="Scheduled">Scheduled</mat-option>
+          <mat-option value="In Progress">In Progress</mat-option>
+          <mat-option value="Completed">Completed</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Reference Notes</mat-label>
+        <textarea matInput formControlName="referenceNotes"></textarea>
+      </mat-form-field>
+    </div>
+
+    <div class="button-row">
+      <button mat-button type="button">Cancel</button>
+      <button mat-raised-button color="primary" type="submit" [disabled]="!programForm.valid">
+        Save
+      </button>
+    </div>
+  </form>
+</div> -->

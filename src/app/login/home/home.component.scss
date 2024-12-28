@@ -1,0 +1,154 @@
+/* Basic Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-image: url('https://th.bing.com/th/id/OIP.P0lRPSRTREcOKmf2pGIlbAHaEp?w=1280&h=804&rs=1&pid=ImgDetMain'); /* Replace with your background image URL */
+  background-size: cover;
+  background-position: center;
+  /* background-attachment: fixed; */
+  height: 100%;
+  /* width:100%; */
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Header Styling */
+header {
+  width: 100%;
+  padding: 20px 0;
+  background-color: black;
+  position: fixed;
+  top: 0;
+  z-index: 10;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+.header-content {
+  display: flex;
+  color: white;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+.logo-company-name {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.logo-company-name img {
+  width: 50px;
+  height: auto;
+  padding-bottom: 20px;
+}
+
+.logo-company-name h1 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: white;
+}
+
+nav ul {
+  list-style: none;
+  display: flex;
+  gap: 30px;
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  transition: color 0.3s;
+}
+
+nav ul li a:hover {
+  color: #ff7f50; /* Hover color */
+}
+
+/* Main Section Styling */
+.main-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  padding-top: 200px;
+  padding-right:50px; /* To avoid overlap with fixed header */
+}
+
+.left-side img {
+  /* width: ;
+  height: auto; */
+  padding-left:100px;
+  border-radius: 10px;
+}
+
+.right-side {
+  width: 50%;
+  text-align: center;
+}
+
+.welcome-message {
+  background-color: rgba(0, 0, 0, 0.5);
+  padding: 30px;
+  border-radius: 10px;
+  padding-bottom: 30px;
+}
+
+.welcome-message h2 {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.welcome-message p {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 1.2rem;
+  background-color: #ff7f50;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+button:hover {
+  background-color: #ff5733;
+}
+
+/* Footer Styling */
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  text-align: center;
+  padding: 20px;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+footer p {
+  margin: 5px 0;
+}
+
+footer a {
+  text-decoration: none;
+  color: #ff7f50;
+  font-weight: bold;
+}
+
+footer a:hover {
+  color: #ff5733;
+}

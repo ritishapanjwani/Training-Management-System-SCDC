@@ -1,0 +1,74 @@
+body {
+  background-image: url('https://th.bing.com/th/id/OIP.P0lRPSRTREcOKmf2pGIlbAHaEp?w=1280&h=804&rs=1&pid=ImgDetMain'); /* Replace with your background image URL */
+  background-size: cover;
+  background-position: center;
+  font-family: Arial, sans-serif;
+  background-color: #f7f7f7;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.login-container {
+  background-color:white;
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  text-align: center;
+}
+
+h2 {
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+}
+
+.input-group {
+  margin-bottom: 20px;
+  text-align: left;
+}
+
+.input-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  width: 100%;
+  padding: 10px;
+  background-color: rgb(4, 4, 111);
+  /* background-color: #ff7f50; */
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ff5733;
+}
+
+.forgot-password {
+  margin-top: 10px;
+}
+
+.forgot-password a {
+  text-decoration: none;
+  color: #ff7f50;
+  font-weight: bold;
+}
+
+.forgot-password a:hover {
+  color: #ff5733;
+}

@@ -15,6 +15,18 @@ import { TraineesListComponent } from './features/trainees/trainees-list/trainee
 import { TraineesAddEditComponent } from './features/trainees/trainees-list/trainees-add-edit/trainees-add-edit.component';
 import { ScoresComponent } from './features/scores/scores.component';
 import { ProgramsModule } from './features/programs/programs.module';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatSelectModule } from '@angular/material/select';
+import { FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { MatCard, MatCardModule } from '@angular/material/card';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatDatepickerModule, MatDateRangePicker } from '@angular/material/datepicker';
+import { MatChipGridChange } from '@angular/material/chips';
+import { MatInputModule } from '@angular/material/input';
+import { HomeComponent } from './login/home/home.component';
+import { LoginComponent } from './login/login/login.component';
+import { RegisterComponent } from './login/register/register.component';
+
 
 
 //creating a constant array of all the modules
@@ -38,11 +50,21 @@ const uxModules = [
     TraineesListComponent,
     TraineesAddEditComponent,
     ScoresComponent,
+    HomeComponent,
+    LoginComponent,
+    RegisterComponent,
   ],
   imports: [
     BrowserModule,
+    MatInputModule,
     BrowserAnimationsModule,
-    AppRoutingModule, 
+    AppRoutingModule,
+    MatSelectModule,
+    ReactiveFormsModule,
+    MatCardModule,
+    MatDatepickerModule,
+    MatFormFieldModule,
+    MatDividerModule,
     ProgramsModule,
     uxModules
   ],
