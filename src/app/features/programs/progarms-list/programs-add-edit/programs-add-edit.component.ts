@@ -32,7 +32,7 @@ export class ProgramsAddEditComponent implements OnInit {
     // private dialog: MatDialog, when using MatDialog
     private dialogRef: MatDialogRef<ProgramsAddEditComponent>,
     private snackBar: SnackBarService,
-    @Inject(MAT_DIALOG_DATA) public data:any     // Inject data from the parent component              
+    @Inject(MAT_DIALOG_DATA) public data:any     // Inject data from the parent component
 
   ) {
     // Initialize form in constructor
@@ -66,7 +66,7 @@ export class ProgramsAddEditComponent implements OnInit {
   //     }
   //   });
   // }
- 
+
   private formatDate(date: Date): string {
     if (!date) return '';
     return `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}`;
@@ -75,12 +75,12 @@ export class ProgramsAddEditComponent implements OnInit {
   private validateTime(time: string): string {
     // Basic time validation and formatting
     if (!time) return '';
-    
+
     // If time is already in correct format (e.g., "11:00 AM"), return it
     if (/^(0?[1-9]|1[0-2]):[0-5][0-9] (AM|PM)$/.test(time)) {
       return time;
     }
-    
+
     // If time needs formatting, return empty string
     return '';
   }
@@ -90,7 +90,7 @@ export class ProgramsAddEditComponent implements OnInit {
   onFormSubmit() {
     if (this.programForm.valid) {
 
-      
+
       // Create a copy of the form values
       const formData = { ...this.programForm.value };
 
@@ -108,13 +108,13 @@ export class ProgramsAddEditComponent implements OnInit {
 
       // Log the formatted data
       console.log('Formatted form data:', formData);
-           
+
        if(this.data){
-      
+
         this.programService.updateProgram(this.data._id,formData).subscribe({
           next:(respons)=>{
             console.log('Program updated:', respons);
-            
+
             this.snackBar.openSnackBar('Program updated', 'Success');
             this.dialogRef.close(true);
 
@@ -124,14 +124,14 @@ export class ProgramsAddEditComponent implements OnInit {
         this.snackBar.openSnackBar('error updating program', 'Failed')
       }});
     }
-      
+
        else{
-      
+
       // Submit to service
       this.programService.addProgram(formData).subscribe({
         next: (response) => {
           console.log("Program added successfully!", response);
-          this.snackBar.openSnackBar('Program added', 'Success'); 
+          this.snackBar.openSnackBar('Program added', 'Success');
           this.dialogRef.close(true);
         },
         error: (error) => {
@@ -143,7 +143,7 @@ export class ProgramsAddEditComponent implements OnInit {
     } else {
       this.programForm.markAllAsTouched();
       console.log("Form is invalid");
-      
+
       // Log validation errors
       Object.keys(this.programForm.controls).forEach(key => {
         const control = this.programForm.get(key);
@@ -154,12 +154,16 @@ export class ProgramsAddEditComponent implements OnInit {
     }
   }
 
- 
+
+  onCancel(): void {
+    this.dialogRef.close();
+  }
+
 
 
    addTopic(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
-  
+
     if (value) {
       const topicsArray = this.programForm.get('topics') as FormArray;
       if (!topicsArray.value.includes(value)) { // Prevent duplicates
@@ -167,14 +171,14 @@ export class ProgramsAddEditComponent implements OnInit {
         this.programForm.updateValueAndValidity(); // Force validation update
       }
     }
-  
+
     event.chipInput!.clear();
   }
 
   removeTopic(topic: string): void {
     const topicsArray = this.programForm.get('topics') as FormArray;
     const index = topicsArray.controls.findIndex(control => control.value === topic);
-  
+
     if (index >= 0) {
       topicsArray.removeAt(index);
       this.programForm.updateValueAndValidity(); // Force validation update
@@ -203,7 +207,7 @@ export class ProgramsAddEditComponent implements OnInit {
     return topicsArray.invalid && (topicsArray.dirty || topicsArray.touched);
   }
 
- 
+
 get topicsArray(): FormArray {
   return this.programForm.get('topics') as FormArray;
 }
@@ -212,5 +216,5 @@ get topicsArray(): FormArray {
   setTopics(topics: string[]): void {
     this.topics = [...topics];
   }
- 
+
 }

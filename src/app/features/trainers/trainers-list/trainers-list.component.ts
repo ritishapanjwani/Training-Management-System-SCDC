@@ -4,6 +4,9 @@ import { TrainersAddEditComponent } from './trainers-add-edit/trainers-add-edit.
 import { Trainer } from 'src/app/core/interfaces/trainers.interface';
 import { SnackBarService } from 'src/app/core/services/snackBar.service';
 import { TrainerService } from 'src/app/core/services/trainers.service';
+import { FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { PopUpService } from 'src/app/core/services/pop-up-service';
 
 
 
@@ -15,39 +18,74 @@ import { TrainerService } from 'src/app/core/services/trainers.service';
 export class TrainersListComponent implements OnInit {
   trainers: Trainer[] = [];
 
+  filteredTrainers: Trainer[] = [];
+  searchControl = new FormControl('');
 
-
-  constructor(private trainerService: TrainerService, private dialog: MatDialog, private snackBar: SnackBarService) {}
+  constructor(private trainerService: TrainerService, private dialog: MatDialog, private snackBar: SnackBarService,
+     private popUpService: PopUpService
+  ) {}
 
   ngOnInit(): void {
     this.getTrainers();
+
+    this.searchControl.valueChanges.pipe(
+      debounceTime(300),
+      distinctUntilChanged()
+    ).subscribe(() => {
+      this.onSearch();
+    });
   }
 
 
+//ol search
+// getTrainers(): void{
+// this.trainerService.getAllTrainers().subscribe({
+//   next: (res) =>{
+//     this.trainers = res;
+//     console.log(this.trainers);
+//   },
+//   error: (err) =>{
+//     console.log("Error occured while getting data", err);
+//   }
+// });
 
-getTrainers(): void{
-this.trainerService.getAllTrainers().subscribe({
-  next: (res) =>{
-    this.trainers = res;
-    console.log(this.trainers);
-  },
-  error: (err) =>{
-    console.log("Error occured while getting data", err);
-  }
-});
+// }
 
+getTrainers(): void {
+  this.trainerService.getAllTrainers().subscribe({
+    next: (res) => {
+      this.trainers = res;
+      this.filteredTrainers = [...this.trainers]; // Initialize filtered trainers
+      console.log(this.trainers);
+    },
+    error: (err) => {
+      console.log("Error occurred while getting data", err);
+    }
+  });
 }
 
-  createTrainer(trainerData: any) {
-    // this.programService.createTrainer(trainerData).subscribe({
-    //   next: (res) => {
-    //     this.getGroupedTrainers(); // Refresh the list after adding a new trainer
-    //   },
-    //   error: (err) => {
-    //     console.log(err);
-    //   }
-    // });
+
+ onSearch(): void {
+    const searchTerm = (this.searchControl.value || '').toLowerCase().trim();
+
+    if (!searchTerm) {
+      this.filteredTrainers = [...this.trainers];
+      return;
+    }
+
+    this.filteredTrainers = this.trainers.filter(trainer =>
+      trainer.trainerName.toLowerCase().includes(searchTerm) ||
+      trainer.businessUnit.toLowerCase().includes(searchTerm) ||
+      trainer.expertise.some(exp => exp.toLowerCase().includes(searchTerm)) ||
+      trainer.module.some(module => module.toLowerCase().includes(searchTerm)) ||
+      trainer.topics.some(topic => topic.toLowerCase().includes(searchTerm))
+    );
   }
+
+  clearSearch(): void {
+    this.searchControl.setValue('');
+  }
+
 
 
 
@@ -76,18 +114,23 @@ this.trainerService.getAllTrainers().subscribe({
            });
       }
 
-  deleteProgram(id: string): void {
+  deleteProgram(id: string): void  {
+    this.popUpService.confirm('Are you sure, you want to remove this trainer?').subscribe(result=>{
+      if(result){
+        this.trainerService.deleteTrainer(id).subscribe({
+          next:(res)=>{
+            console.log("Trainer deleted successfully!");
+            this.snackBar.openSnackBar("Trainer deleted", 'Success');
+            this.getTrainers();
+          },
+          error(err) {
+              console.log(err);
+          },
+        });
+      }
+    })
     // Logic to delete a program
-    this.trainerService.deleteTrainer(id).subscribe({
-      next:(res)=>{
-        console.log("Trainer deleted successfully!");
-        this.snackBar.openSnackBar("Trainer deleted", 'Success');
-        this.getTrainers();
-      },
-      error(err) {
-          console.log(err);
-      },
-    });
+
   }
 
 }

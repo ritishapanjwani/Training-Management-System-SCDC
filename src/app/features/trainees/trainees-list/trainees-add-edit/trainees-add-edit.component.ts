@@ -70,7 +70,7 @@ export class TraineesAddEditComponent {
           }
         },
         error: (err) => {
-          this.snackBar.openSnackBar('Failed to load trainees', 'Close');
+          // this.snackBar.openSnackBar('Failed to load trainees', 'Close');
         }
       });
   }
@@ -101,7 +101,7 @@ export class TraineesAddEditComponent {
         this.groupedTrainees = response;
       },
       error: (err) => {
-        this.snackBar.openSnackBar('Failed to load trainees', 'Close');
+        // this.snackBar.openSnackBar('Failed to load trainees', 'Close');
       }
     });
   }

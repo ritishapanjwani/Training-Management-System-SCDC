@@ -10,8 +10,7 @@ export interface Program{
     startTime: string;
     endTime: string;
     trainingMode: 'Online' | 'Offline';
-    trainer:string; 
+    trainer:string;
     status: 'Scheduled' | 'Ongoing' | 'Completed';
-    
+
 }
-   

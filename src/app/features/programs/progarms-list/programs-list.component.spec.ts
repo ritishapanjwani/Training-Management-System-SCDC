@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ProgarmsListComponent } from './progarms-list.component';
+import { ProgarmsListComponent } from './programs-list.component';
 
 describe('ProgarmsListComponent', () => {
   let component: ProgarmsListComponent;

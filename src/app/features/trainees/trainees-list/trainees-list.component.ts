@@ -5,6 +5,7 @@ import { Trainee } from 'src/app/core/interfaces/trainees.interface';
 import { MatDialog } from '@angular/material/dialog';
 import { TraineesAddEditComponent } from './trainees-add-edit/trainees-add-edit.component';
 import { animate, style, transition, trigger } from '@angular/animations';
+import { PopUpService } from 'src/app/core/services/pop-up-service';
 
 
 @Component({
@@ -22,10 +23,11 @@ import { animate, style, transition, trigger } from '@angular/animations';
 })
 export class TraineesListComponent {
   trainees: Trainee[] = [];
+  // filteredTrainers: Trainer[] = [];
+  // searchControl = new FormControl('');
 
 
-
-    constructor(private traineeService: TraineeService, private dialog: MatDialog, private snackBar: SnackBarService) {}
+    constructor(private traineeService: TraineeService, private dialog: MatDialog, private snackBar: SnackBarService, private popUpService: PopUpService) {}
 
     ngOnInit(): void {
       this.getTrainees();
@@ -84,18 +86,25 @@ export class TraineesListComponent {
              });
         }
 
+
     deleteProgram(id: string): void {
       // Logic to delete a program
-      this.traineeService.deleteTrainee(id).subscribe({
-        next:(res)=>{
-          console.log("Trainee deleted successfully!");
-          this.snackBar.openSnackBar("Trainee deleted", 'Success');
-          this.getTrainees();
-        },
-        error(err) {
-            console.log(err);
-        },
+      this.popUpService.confirm('Are you sure you want to delete this trainee?').subscribe(result=>{
+        if(result){
+          this.traineeService.deleteTrainee(id).subscribe({
+            next:(res)=>{
+              console.log("Trainee deleted successfully!");
+              this.snackBar.openSnackBar("Trainee deleted", 'Success');
+              this.getTrainees();
+            },
+            error(err) {
+                console.log(err);
+            },
+          });
+        }
       });
     }
+
+
 
 }

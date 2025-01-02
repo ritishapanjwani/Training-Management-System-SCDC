@@ -26,6 +26,11 @@ import { MatInputModule } from '@angular/material/input';
 import { HomeComponent } from './login/home/home.component';
 import { LoginComponent } from './login/login/login.component';
 import { RegisterComponent } from './login/register/register.component';
+import { AddColumnComponent } from './features/scores/add-column/add-column.component';
+import { ScoreCardComponent } from './features/scores/score-card/score-card.component';
+import { ScoresModule } from './features/scores/scores.module';
+
+
 
 
 
@@ -62,13 +67,17 @@ const uxModules = [
     MatSelectModule,
     ReactiveFormsModule,
     MatCardModule,
+    MatIconModule,
     MatDatepickerModule,
     MatFormFieldModule,
     MatDividerModule,
+    ScoresModule,
     ProgramsModule,
     uxModules
   ],
-  providers: [],
+  providers: [
+
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

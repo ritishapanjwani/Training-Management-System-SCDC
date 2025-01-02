@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HeaderComponent } from './shared/components/header/header.component';
-import { ProgarmsListComponent } from './features/programs/progarms-list/progarms-list.component';
+import { ProgramsListComponent } from './features/programs/progarms-list/programs-list.component';
 import { TraineesListComponent } from './features/trainees/trainees-list/trainees-list.component';
 import { TrainersListComponent } from './features/trainers/trainers-list/trainers-list.component';
 import { ProgramsAddEditComponent } from './features/programs/progarms-list/programs-add-edit/programs-add-edit.component';
@@ -11,7 +11,9 @@ import { HomeComponent } from './login/home/home.component';
 import { LoginComponent } from './login/login/login.component';
 import { RegisterComponent } from './login/register/register.component';
 import { AuthGuard } from './auth.guard';
-import { ScoresModule } from './features/scores/scores.module';
+
+import { DashboardComponent } from './features/dashboard/dashboard.component';
+import { ScoreCardComponent } from './features/scores/score-card/score-card.component';
 
 const routes: Routes = [
   { path: 'home', component: HomeComponent },
@@ -23,14 +25,15 @@ const routes: Routes = [
     component: HeaderComponent,
     canMatch: [AuthGuard],
     children: [
-      { path: 'program-list', component: ProgarmsListComponent },
+      { path: 'program-list', component: ProgramsListComponent },
       { path: 'trainees-list', component: TraineesListComponent },
       { path: 'trainers-list', component: TrainersListComponent },
-      {path:'score-card',component:ScoresModule},
+      {path:'dashboard',component:DashboardComponent},
+      {path:'scores',component:ScoreCardComponent},
 
     ],
   },
-  { path: '**', redirectTo: 'home' },
+  // { path: 'program', component:ProgramsListComponent },
 ];
 
 // const routes: Routes = [

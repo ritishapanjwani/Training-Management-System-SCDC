@@ -7,7 +7,7 @@ import { jwtDecode } from 'jwt-decode'; // Correct named import
 interface DecodedToken {
   role: string;
   exp: number;
-  username: string;
+  email: string;
   // Add other fields you expect in the JWT
 }
 
@@ -38,6 +38,19 @@ export class AuthService {
   getToken(): string | null {
     return localStorage.getItem('token');
   }
+
+  // getUser(): { email: string; role: string } | null {
+  //   const user = localStorage.getItem('user'); // Assumes user is stored in localStorage
+  //   return user ? JSON.parse(user) : null;
+  // }
+
+  getUserDetails(): Observable<{ email: string; role: string }> {
+    return this.http.get<{ email: string; role: string }>(`${this.apiUrl}/user-details`);
+  }
+  // getRole() {
+  //   const user = this.getUser();
+  //   return user ? user.role : null;
+  // }
 
   getUserRole(): string {
     const token = this.getToken();

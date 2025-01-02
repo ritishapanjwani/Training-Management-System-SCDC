@@ -20,6 +20,12 @@ body {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   width: 400px;
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Center align items within the box */
+  width: 400px;
+  margin: 0 auto;
+
 }
 
 h2 {
@@ -31,6 +37,7 @@ h2 {
 .input-group {
   margin-bottom: 15px;
   text-align: left;
+
 }
 
 .input-group label {
@@ -42,7 +49,7 @@ h2 {
 
 .input-group input,
 .input-group select {
-  width: 100%;
+  //width: 100%;
   padding: 10px;
   font-size: 1rem;
   border: 1px solid #ccc;
@@ -54,11 +61,20 @@ h2 {
   border-color: #ff7f50; /* Highlight border color when input is focused */
 }
 
-#passwordMatchStatus {
-  font-size: 0.9rem;
-  margin-top: 5px;
-  font-weight: bold;
+.input-field{
+  width: 350px; /* Set desired width in pixels or percentage */
+  padding: 10px; /* Optional: Add padding for better spacing */
+  font-size: 1rem; /* Optional: Adjust font size for better appearance */
+  border: 1px solid #ccc; /* Optional: Add border for styling */
+  border-radius: 5px; /* Optional: Add rounded corners */
+  box-sizing: border-box;
 }
+
+// #passwordMatchStatus {
+//   font-size: 0.9rem;
+//   margin-top: 5px;
+//   font-weight: bold;
+// }
 
 button {
   width: 100%;
@@ -74,4 +90,17 @@ button {
 
 button:hover {
   background-color: #ff5733;
+}
+.forgot-password {
+  margin-top: 10px;
+}
+
+.forgot-password a {
+  text-decoration: none;
+  color: #ff7f50;
+  font-weight: bold;
+}
+
+.forgot-password a:hover {
+  color: #ff5733;
 }

@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TrainersListComponent } from '../trainers/trainers-list/trainers-list.component';
 import { TrainersAddEditComponent } from '../trainers/trainers-list/trainers-add-edit/trainers-add-edit.component';
-import { ProgarmsListComponent } from './progarms-list/progarms-list.component';
+import {  ProgramsListComponent } from './progarms-list/programs-list.component';
 import { ProgramsAddEditComponent } from './progarms-list/programs-add-edit/programs-add-edit.component';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatIconModule} from '@angular/material/icon';
@@ -25,19 +25,11 @@ import { MatDividerModule } from '@angular/material/divider';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
-
-
-
-
-
-
-
-
 @NgModule({
   declarations: [
     TrainersListComponent,
     TrainersAddEditComponent,
-    ProgarmsListComponent,
+   ProgramsListComponent,
     ProgramsAddEditComponent
   ],
   imports: [
@@ -63,6 +55,6 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     MatDividerModule,
     BrowserAnimationsModule
     ],
-    exports:[ProgarmsListComponent]
+    exports:[ProgramsListComponent]
 })
 export class ProgramsModule { }

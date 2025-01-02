@@ -5,7 +5,7 @@
     <!-- Employee ID -->
     <div class="input-group">
       <label for="employeeId">Employee ID</label>
-      <input type="text" id="employeeId" formControlName="employeeID" required>
+      <input class="input-field" type="text" id="employeeId" formControlName="employeeID" required>
       <div *ngIf="registerForm.get('employeeID')?.invalid && registerForm.get('employeeID')?.touched">
         <small class="error">Employee ID is required</small>
       </div>
@@ -13,50 +13,50 @@
 
     <!-- Company Email -->
     <div class="input-group">
-      <label for="username">Company Email</label>
-      <input type="email" id="username" formControlName="username" required>
-      <div *ngIf="registerForm.get('username')?.invalid && registerForm.get('username')?.touched">
-        <small class="error" *ngIf="registerForm.get('username')?.hasError('required')">Email is required</small>
-        <small class="error" *ngIf="registerForm.get('username')?.hasError('email')">Invalid email</small>
+      <label for="email">Company Email</label>
+      <input class="input-field" type="email" id="email" formControlName="email" required>
+      <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
+        <small class="error" *ngIf="registerForm.get('email')?.hasError('required')">Email is required</small>
+        <small class="error" *ngIf="registerForm.get('email')?.hasError('email')">Invalid email</small>
       </div>
     </div>
 
     <!-- Password -->
     <div class="input-group">
       <label for="password">Password</label>
-      <input type="password" id="password" formControlName="password" required>
-      <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+      <input class="input-field" type="password" id="password" formControlName="password" required>
+      <!-- <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
         <small class="error" *ngIf="registerForm.get('password')?.hasError('required')">Password is required</small>
         <small class="error" *ngIf="registerForm.get('password')?.hasError('minlength')">Password must be at least 6 characters</small>
-      </div>
+      </div> -->
     </div>
 
     <!-- Confirm Password -->
-    <div class="input-group">
+    <!-- <div class="input-group">
       <label for="confirmPassword">Confirm Password</label>
       <input type="password" id="confirmPassword" formControlName="confirmPassword" required>
       <div *ngIf="registerForm.get('confirmPassword')?.invalid && registerForm.get('confirmPassword')?.touched">
         <small class="error" *ngIf="registerForm.get('confirmPassword')?.hasError('required')">Confirm Password is required</small>
         <small class="error" *ngIf="registerForm.hasError('passwordMismatch')">Passwords do not match</small>
       </div>
-    </div>
+    </div> -->
 
     <!-- Phone Number -->
     <div class="input-group">
-      <label for="phoneNumber">Phone Number</label>
-      <input type="tel" id="phoneNumber" formControlName="phoneNo" required>
+      <label for="phoneNo">Phone Number</label>
+      <input class="input-field" type="tel" id="phoneNo" formControlName="phoneNo" required>
     </div>
 
     <!-- Date of Birth -->
     <div class="input-group">
       <label for="dob">Date of Birth</label>
-      <input type="date" id="dob" formControlName="dob" required>
+      <input class="input-field" type="date" id="dob" formControlName="dob" required>
     </div>
 
     <!-- Role -->
     <div class="input-group">
       <label for="role">Role</label>
-      <select id="role" formControlName="role" required>
+      <select class="input-field" id="role" formControlName="role" required>
         <option value="Trainee">Trainee</option>
         <option value="Trainer">Trainer</option>
         <option value="Admin">Admin</option>
@@ -67,7 +67,10 @@
     <button type="submit" [disabled]="registerForm.invalid">Register</button>
 
     <div>
-      <p>Already Have an Account? <a href="../login/login.component.html">Sign In</a></p>
+      <p class="forgot-password">
+        Already Have an Account?
+        <a routerLink="/login">Sign In</a>
+      </p>
     </div>
   </form>
 </div>

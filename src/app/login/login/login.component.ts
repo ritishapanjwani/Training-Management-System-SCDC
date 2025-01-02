@@ -20,7 +20,7 @@ export class LoginComponent {
 
   ngOnInit(): void {
     this.loginForm = this.fb.group({
-      username: ['', [Validators.required, Validators.email]],
+      email: ['', [Validators.required, Validators.email]],
       password: ['', [Validators.required, Validators.minLength(6)]],
     });
   }
@@ -31,11 +31,12 @@ export class LoginComponent {
       return;
     }
     if (this.loginForm.valid) {
-      const { username, password } = this.loginForm.value;
-      this.authService.login(username, password).subscribe(
+      const { email, password } = this.loginForm.value;
+      //console.log(this.loginForm.value);
+      this.authService.login(email, password).subscribe(
         (response) => {
           this.authService.setToken(response.token);
-          this.router.navigate(['']); // Redirect to the dashboard after successful login
+          this.router.navigate(['/dashboard']); // Redirect to the dashboard after successful login
         },
         (error) => {
           console.error('Login failed:', error);

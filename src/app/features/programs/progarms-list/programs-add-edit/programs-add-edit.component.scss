@@ -1,23 +1,23 @@
 .content {
-    padding-top: 10px;
+  padding-top: 10px;
 }
 
 .row {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
 
-    mat-form-field {
-        width: 100%;
-    }
+  mat-form-field {
+      width: 100%;
+  }
 
 }
 .custom-timepicker {
-    display: flex;
-    gap: 10px;
+  display: flex;
+  gap: 10px;
+}
+.action{
+  padding: 0px 25px 20px;
+  button{
+      flex:1;
   }
-  .action{
-    padding: 0px 25px 20px;
-    button{
-        flex:1;
-    }
-  }
+}
