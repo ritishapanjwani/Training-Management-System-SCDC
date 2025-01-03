@@ -1,3 +1,6 @@
+.sticky-header{
+  background-color: white;
+}
 mat-sidenav{
     background:  #007bff;
     width: 240px;
@@ -11,6 +14,9 @@ mat-sidenav-content{
     }
     .menu-btn{
     cursor: pointer;
+    color:black;
+    width:25px;
+
 
 
     &:hover {
@@ -21,8 +27,10 @@ mat-sidenav-content{
 mat-toolbar{
 
   display: flex; /* Make toolbar a flex container */
+
   align-items: center; /* Align items vertically */
-  justify-content: space-between;
+  //justify-content: space-between;
+  margin-bottom:20px;
 
     .right-aligned-text{
       margin:0;
@@ -43,8 +51,9 @@ mat-toolbar{
     mat-icon{
         //margin-left: 10px;
         color: #6D8299;
-        height: 50px;
-        padding-top:20px;
+        height: 55px;
+        padding-top:31px;
+        padding-right:5px;
     }
     //justify-content: space-between;
     .box{

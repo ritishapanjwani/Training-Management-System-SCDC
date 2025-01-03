@@ -8,7 +8,18 @@ mat-toolbar {
   margin-bottom: 16px;
   font-size: 1.5rem;
   font-weight: bold;
-  color: white;
+
+}
+
+.sticky-header {
+
+  //margin-left: 16px;
+  // margin-right: -600px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 mat-card-header {
@@ -92,12 +103,13 @@ mat-card-header {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 300px;
+  height: 350px;
+  //padding-right:10px;
 }
 
 .bar-chart-container {
   width: 96%;
-  height: 300px;
+  height: 340px;
   display: flex;
   justify-content: center;
   align-items: center;

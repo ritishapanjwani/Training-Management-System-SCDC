@@ -16,7 +16,7 @@
   </div>
 
 
-  <button mat-raised-button color="primary" (click)="openAddEditForm()">
+  <button mat-raised-button color="primary" (click)="openAddEditForm()" class="addTrainee">
     <mat-icon>add</mat-icon>
     <span>New Trainee</span>
   </button>
@@ -25,7 +25,7 @@
 
 <div class="programs-container">
   <div class="program-grid">
-    <mat-card class="program-card" *ngFor="let trainee of trainees">
+    <mat-card class="program-card" *ngFor="let trainee of filteredTrainees">
       <mat-card-header>
         <mat-card-title>{{ trainee.name }}</mat-card-title>
         <div class="status-badge" [ngClass]="trainee.currentStatus.toLowerCase()">
@@ -51,7 +51,7 @@
 
       <div class="card-footer">
 
-          <button mat-button color="primary" (click)="openEditForm(trainee)">
+          <button mat-button color="primary" (click)="openEditForm(trainee)" >
             <mat-icon>edit</mat-icon> Edit
           </button>
           <button mat-button color="warn" (click)="deleteProgram(trainee._id)">

@@ -23,11 +23,12 @@ body {
 /* Header Styling */
 header {
   width: 100%;
+  height:120px;
   //padding: 20px 0;
   background-color:#2f04cc;
   position: fixed;
   top: 0;
-  padding:20px;
+  //padding:20px;
   z-index: 10;
   box-shadow: 0 4px 6px rgba(0, 50, 104, 0.3);
 
@@ -41,8 +42,10 @@ header {
   color: white;
   justify-content: space-between;
   align-items: center;
+  justify-items: center;
+  height: 15vh;
   max-width: 1200px;
-  margin: 0 auto;
+  margin: auto;
   // padding: 0 20px;
 }
 
@@ -53,8 +56,8 @@ header {
 }
 
 .logo-company-name img {
-  width: 200px;
-  height: auto;
+  // width: 200px;
+  // height: auto;
 }
 
 .logo-company-name h1 {

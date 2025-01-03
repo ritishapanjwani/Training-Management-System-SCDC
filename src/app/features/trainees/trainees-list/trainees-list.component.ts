@@ -14,14 +14,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
   selector: 'app-trainees-list',
   templateUrl: './trainees-list.component.html',
   styleUrls: ['./trainees-list.component.scss'],
-  animations: [
-    trigger('fadeIn', [
-      transition(':enter', [
-        style({ opacity: 0 }),
-        animate('0.5s', style({ opacity: 1 }))
-      ])
-    ])
-  ]
+
 })
 export class TraineesListComponent {
   trainees: Trainee[] = [];
@@ -79,11 +72,10 @@ export class TraineesListComponent {
       else{
       // console.log(this.trainees);
       this.filteredTrainees = this.trainees.filter(traine =>
-        traine.name.toLowerCase().includes(searchTerm)
-        // traine.hiringBusinessUnit.toLowerCase().includes(searchTerm) ||
-        // trainee.location.toLowerCase().includes(searchTerm) ||
-        // trainee.mappedBusinessUnit.toLowerCase().includes(searchTerm)
-        // trainee..toLowerCase().includes(searchTerm)
+        traine.name.toLowerCase().includes(searchTerm) ||
+        traine.hiringBusinessUnit.toLowerCase().includes(searchTerm) ||
+        traine.location.toLowerCase().includes(searchTerm) ||
+        traine.mappedBusinessUnit.toLowerCase().includes(searchTerm)
       );
       console.log(this.trainees);
     }

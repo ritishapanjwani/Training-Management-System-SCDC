@@ -5,13 +5,15 @@
     <mat-sidenav-content>
         <div class="content">
             <div class="toolbar">
-                <mat-toolbar>
-                    <mat-icon class="menu-btn" (click)="sidebar.toggle()">menu </mat-icon>
+                <mat-toolbar class="sticky-header">
+                    <mat-icon class="menu-btn" (click)="sidebar.toggle()" >menu </mat-icon>
                     <!-- <p>STDM</p> -->
-                    Solugenix Competency Development Center
+                    <div>Solugenix Competency Development Center</div>
                     <!-- https://www.womenleadrestaurants.com/wp-content/uploads/2024/10/solugenix-logo.png -->
-                    <img class= "logo" src="../../../../assets/Solugenix Logo.svg" alt="logo" width="250px" height="150px" />
-
+                     <div class="spacer" [ngStyle]="{'flex-grow':'1'}"></div>
+                     <div>
+                    <img class= "logo" src="https://www.womenleadrestaurants.com/wp-content/uploads/2024/10/solugenix-logo.png" alt="logo" width="250px" height="150px" [ngStyle]="{'padding-top':'15px'}" />
+                    </div>
                     <div class="box">
                         <!-- <mat-icon>search</mat-icon> -->
                         <!-- <mat-icon>bookmark_border</mat-icon>
