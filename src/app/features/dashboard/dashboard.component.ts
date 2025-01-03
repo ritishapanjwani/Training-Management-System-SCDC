@@ -137,13 +137,13 @@ export class DashboardComponent implements OnInit {
       ],
     },
     {
-      title: 'Programs',
+      title: 'Modules',
       icon: 'school',
       metrics: [
-        { label: 'Total Programs', value: this.totalPrograms },
-        { label: 'Completed Programs', value: this.completedPrograms },
-        { label: 'Ongoing Programs', value: this.ongoingPrograms },
-        { label: 'Scheduled Programs', value: this.scheduledPrograms },
+        { label: 'Total Modules', value: this.totalPrograms },
+        { label: 'Completed Modules', value: this.completedPrograms },
+        { label: 'Ongoing Modules', value: this.ongoingPrograms },
+        { label: 'Scheduled Modules', value: this.scheduledPrograms },
       ],
     },
     {

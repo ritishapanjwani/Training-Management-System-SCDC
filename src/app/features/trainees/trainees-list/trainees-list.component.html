@@ -1,17 +1,19 @@
-<mat-toolbar>
-  <span>Trainees</span>
+<mat-toolbar class="sticky-header">
+  <span [ngStyle]="{'font-size': '25px','font-family': 'Arial, Sans-serif', 'letter-spacing':'2px', 'font-weight':'bold'}">Trainees</span>
   <span class="example-spacer"></span>
 
-  <!-- <div class="search-container">
+  <div class="search-container">
     <mat-form-field appearance="outline" class="search-field">
       <mat-icon matPrefix>search</mat-icon>
       <input matInput
-            >
-      <button mat-icon-button>
+             [formControl]="searchControl"
+             placeholder="Search Trainee by name"
+             (keyup)="onSearch()">
+      <button mat-icon-button matSuffix *ngIf="searchControl.value" (click)="clearSearch()">
         <mat-icon>close</mat-icon>
       </button>
     </mat-form-field>
-  </div> -->
+  </div>
 
 
   <button mat-raised-button color="primary" (click)="openAddEditForm()">

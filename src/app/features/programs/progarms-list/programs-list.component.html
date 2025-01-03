@@ -1,5 +1,5 @@
 <mat-toolbar class="sticky-header">
-  <span>Programs</span>
+  <span [ngStyle]="{'font-size': '25px','font-family': 'Arial, Sans-serif', 'letter-spacing':'2px', 'font-weight':'bold'}">Modules</span>
   <span class="example-spacer"></span>
 
   <!--  search field -->
@@ -16,9 +16,9 @@
     </mat-form-field>
   </div>
 
-  <button mat-raised-button color="primary" (click)="openAddEditForm()">
+  <button mat-raised-button color="primary" (click)="openAddEditForm()" class="addModule">
     <mat-icon>add</mat-icon>
-    <span>New Program</span>
+    <span>Add Module</span>
   </button>
 </mat-toolbar>
 

@@ -6,6 +6,8 @@ import { MatDialog } from '@angular/material/dialog';
 import { TraineesAddEditComponent } from './trainees-add-edit/trainees-add-edit.component';
 import { animate, style, transition, trigger } from '@angular/animations';
 import { PopUpService } from 'src/app/core/services/pop-up-service';
+import { FormControl } from '@angular/forms';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 
 @Component({
@@ -23,14 +25,21 @@ import { PopUpService } from 'src/app/core/services/pop-up-service';
 })
 export class TraineesListComponent {
   trainees: Trainee[] = [];
-  // filteredTrainers: Trainer[] = [];
-  // searchControl = new FormControl('');
+  filteredTrainees: Trainee[] = [];
+  searchControl = new FormControl('');
 
 
     constructor(private traineeService: TraineeService, private dialog: MatDialog, private snackBar: SnackBarService, private popUpService: PopUpService) {}
 
     ngOnInit(): void {
       this.getTrainees();
+
+      this.searchControl.valueChanges.pipe(
+            debounceTime(300),
+            distinctUntilChanged()
+          ).subscribe(() => {
+            this.onSearch();
+          });
     }
 
 
@@ -39,6 +48,7 @@ export class TraineesListComponent {
   this.traineeService.getAllTrainees().subscribe({
     next: (res) =>{
       this.trainees = res;
+      this.filteredTrainees = [...this.trainees];
       console.log(this.trainees);
     },
     error: (err) =>{
@@ -57,6 +67,30 @@ export class TraineesListComponent {
       //     console.log(err);
       //   }
       // });
+    }
+
+    onSearch(): void {
+      const searchTerm = (this.searchControl.value || '').toLowerCase().trim();
+       console.log("inside onsearch");
+      if (!searchTerm) {
+        this.filteredTrainees = [...this.trainees];
+        return;
+      }
+      else{
+      // console.log(this.trainees);
+      this.filteredTrainees = this.trainees.filter(traine =>
+        traine.name.toLowerCase().includes(searchTerm)
+        // traine.hiringBusinessUnit.toLowerCase().includes(searchTerm) ||
+        // trainee.location.toLowerCase().includes(searchTerm) ||
+        // trainee.mappedBusinessUnit.toLowerCase().includes(searchTerm)
+        // trainee..toLowerCase().includes(searchTerm)
+      );
+      console.log(this.trainees);
+    }
+    }
+
+    clearSearch(): void {
+      this.searchControl.setValue('');
     }
 
 

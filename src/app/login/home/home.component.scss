@@ -23,10 +23,11 @@ body {
 /* Header Styling */
 header {
   width: 100%;
-  padding: 20px 0;
+  //padding: 20px 0;
   background-color:#2f04cc;
   position: fixed;
   top: 0;
+  padding:20px;
   z-index: 10;
   box-shadow: 0 4px 6px rgba(0, 50, 104, 0.3);
 
@@ -42,7 +43,7 @@ header {
   align-items: center;
   max-width: 1200px;
   margin: 0 auto;
-  padding: 0 20px;
+  // padding: 0 20px;
 }
 
 .logo-company-name {
@@ -52,9 +53,8 @@ header {
 }
 
 .logo-company-name img {
-  width: 50px;
+  width: 200px;
   height: auto;
-  padding-bottom: 20px;
 }
 
 .logo-company-name h1 {
@@ -73,7 +73,7 @@ nav ul li a {
   text-decoration: none;
   color: white;
   font-weight: bold;
-  font-size: 1.2rem;
+  font-size: 1.5rem;
   transition: color 0.3s;
 }
 
@@ -87,7 +87,7 @@ nav ul li a:hover {
   justify-content: space-between;
   align-items: center;
   height: 100%;
-  padding-top: 200px;
+  padding-top: 220px;
   padding-right:50px; /* To avoid overlap with fixed header */
 
   p{
@@ -127,7 +127,7 @@ nav ul li a:hover {
 
 button {
   padding: 10px 20px;
-  font-size: 1.2rem;
+  font-size: 1.3rem;
   background-color: rgb(4, 4, 111);
   color: white;
   border: none;
@@ -145,7 +145,7 @@ footer {
   position: absolute;
   bottom: 0;
   width: 100%;
-  text-align: center;
+  text-align: left;
   padding: 20px;
   background-color: #2f04cc;
 }

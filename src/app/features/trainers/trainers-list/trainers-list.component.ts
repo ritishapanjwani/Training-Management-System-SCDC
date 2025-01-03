@@ -74,11 +74,11 @@ getTrainers(): void {
     }
 
     this.filteredTrainers = this.trainers.filter(trainer =>
-      trainer.trainerName.toLowerCase().includes(searchTerm) ||
-      trainer.businessUnit.toLowerCase().includes(searchTerm) ||
-      trainer.expertise.some(exp => exp.toLowerCase().includes(searchTerm)) ||
-      trainer.module.some(module => module.toLowerCase().includes(searchTerm)) ||
-      trainer.topics.some(topic => topic.toLowerCase().includes(searchTerm))
+      trainer.trainerName.toLowerCase().includes(searchTerm)
+      // trainer.businessUnit.toLowerCase().includes(searchTerm) ||
+      // trainer.expertise.some(exp => exp.toLowerCase().includes(searchTerm)) ||
+      // trainer.module.some(module => module.toLowerCase().includes(searchTerm)) ||
+      // trainer.topics.some(topic => topic.toLowerCase().includes(searchTerm))
     );
   }
 

@@ -22,7 +22,7 @@ mat-toolbar{
 
   display: flex; /* Make toolbar a flex container */
   align-items: center; /* Align items vertically */
-  //justify-content: space-between;
+  justify-content: space-between;
 
     .right-aligned-text{
       margin:0;
@@ -34,7 +34,11 @@ mat-toolbar{
       display: inline-block;
       padding-top:5px;
       padding-bottom:10px;
-      padding-right:700px;
+      order:2;
+      // padding-right:700px;
+    }
+    p{
+      order:1;
     }
     mat-icon{
         //margin-left: 10px;
