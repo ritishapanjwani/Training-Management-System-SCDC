@@ -1,24 +1,21 @@
 <mat-toolbar class="sticky-header" >
-  <span class="heading"  [ngStyle]="{'font-size': '25px','font-family': 'Arial, Sans-serif', 'letter-spacing':'2px', 'font-weight':'bold'}">Trainers</span>
+  <span class="heading"  [ngStyle]="{'font-size': '25px', 'letter-spacing':'2px', 'font-weight':'bold'}">Trainers</span>
   <span class="example-spacer"></span>
 
   <div class="search-container">
-    <mat-form-field appearance="outline" class="search-field">
+    <div  class="search-field">
       <mat-icon matPrefix>search</mat-icon>
-      <input matInput
-             [formControl]="searchControl"
-             placeholder="Search Trainer by name"
-             (keyup)="onSearch()">
+        <input matInput
+        [formControl]="searchControl"
+        placeholder="Search Trainer"
+        (keyup)="onSearch()">
       <button mat-icon-button matSuffix *ngIf="searchControl.value" (click)="clearSearch()">
         <mat-icon>close</mat-icon>
       </button>
-    </mat-form-field>
+    </div>
   </div>
 
-
-
   <button mat-raised-button color="primary" (click)="openAddEditForm()" class="addTrainer">
-
     <mat-icon>add</mat-icon>
     <span>Add Trainer</span>
   </button>
@@ -36,13 +33,7 @@
 
       <mat-card-content class="program-content">
 
-        <div class="trainers-container">
-
-          <mat-divider></mat-divider>
-            </div>
-
-
-        <div class="trainer-details">
+        <div class="trainer-details" [ngStyle]="{'font-size': '15px'}">
           <p><mat-icon>theaters icon</mat-icon> {{ trainer.businessUnit }}</p>
           <p><mat-icon>verified</mat-icon> {{trainer.expertise}}</p>
           <p><mat-icon>schedule icon</mat-icon> Total Assigned Hours: {{ trainer.noOfHours }}</p>

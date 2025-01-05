@@ -16,8 +16,8 @@
       <label for="email">Company Email</label>
       <input class="input-field" type="email" id="email" formControlName="email" required>
       <div *ngIf="registerForm.get('email')?.invalid && registerForm.get('email')?.touched">
-        <small class="error" *ngIf="registerForm.get('email')?.hasError('required')">Email is required</small>
-        <small class="error" *ngIf="registerForm.get('email')?.hasError('email')">Invalid email</small>
+        <small class="error" *ngIf="registerForm.get('email')?.hasError('required')" [ngStyle]="{'color':'red'}">Email is required</small>
+        <small class="error" *ngIf="registerForm.get('email')?.hasError('email')" [ngStyle]="{'color':'red'}">Invalid email</small>
       </div>
     </div>
 
@@ -25,10 +25,10 @@
     <div class="input-group">
       <label for="password">Password</label>
       <input class="input-field" type="password" id="password" formControlName="password" required>
-      <!-- <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
-        <small class="error" *ngIf="registerForm.get('password')?.hasError('required')">Password is required</small>
-        <small class="error" *ngIf="registerForm.get('password')?.hasError('minlength')">Password must be at least 6 characters</small>
-      </div> -->
+      <div *ngIf="registerForm.get('password')?.invalid && registerForm.get('password')?.touched">
+        <small class="error" *ngIf="registerForm.get('password')?.hasError('required')" [ngStyle]="{'color':'red'}">Password is required</small>
+        <small class="error" *ngIf="registerForm.get('password')?.hasError('minlength')" [ngStyle]="{'color':'red'}">Password must be at least 6 characters</small>
+      </div>
     </div>
 
     <!-- Confirm Password -->

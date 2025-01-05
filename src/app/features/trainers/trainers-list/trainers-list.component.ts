@@ -36,21 +36,6 @@ export class TrainersListComponent implements OnInit {
     });
   }
 
-
-//ol search
-// getTrainers(): void{
-// this.trainerService.getAllTrainers().subscribe({
-//   next: (res) =>{
-//     this.trainers = res;
-//     console.log(this.trainers);
-//   },
-//   error: (err) =>{
-//     console.log("Error occured while getting data", err);
-//   }
-// });
-
-// }
-
 getTrainers(): void {
   this.trainerService.getAllTrainers().subscribe({
     next: (res) => {
@@ -64,12 +49,10 @@ getTrainers(): void {
   });
 }
 
-
- onSearch(): void {
-    const searchTerm = (this.searchControl.value || '').toLowerCase().trim();
-
-    if (!searchTerm) {
-      this.filteredTrainers = [...this.trainers];
+onSearch(): void {
+  const searchTerm = (this.searchControl.value || '').toLowerCase().trim();
+  if (!searchTerm) {
+    this.filteredTrainers = [...this.trainers];
       return;
     }
 
@@ -85,9 +68,6 @@ getTrainers(): void {
   clearSearch(): void {
     this.searchControl.setValue('');
   }
-
-
-
 
     openAddEditForm() {
      const dialogRef = this.dialog.open(TrainersAddEditComponent);
@@ -129,7 +109,6 @@ getTrainers(): void {
         });
       }
     })
-    // Logic to delete a program
 
   }
 

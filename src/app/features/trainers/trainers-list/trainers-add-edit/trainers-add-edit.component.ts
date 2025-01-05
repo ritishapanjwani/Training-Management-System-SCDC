@@ -74,24 +74,8 @@ export class TrainersAddEditComponent implements OnInit {
           this.snackBar.openSnackBar('Failed to load trainers', 'Close');
         }
       });
+    }
   }
-}
-
-
-
-  // private initForm(): void {
-  //   this.trainerForm = this.fb.group({
-  //     trainer: [null, Validators.required],
-  //     modules: [''],
-  //     topics: [''],
-  //     totalDayHour: [''],
-  //     businessUnit: ['', Validators.required],
-  //     startDate: [null, Validators.required],
-  //     endDate: [null, Validators.required]
-  //   });
-  // }
-
-
 
   printForm(){
     console.log(this.trainerForm.valid)
@@ -127,9 +111,6 @@ export class TrainersAddEditComponent implements OnInit {
 
   onFormSubmit(): void {
     if (this.trainerForm.valid) {
-
-
-
       const formData = { ...this.trainerForm.value };
       console.log(formData);
 
@@ -152,10 +133,7 @@ export class TrainersAddEditComponent implements OnInit {
            this.snackBar.openSnackBar('error updating trainer', 'Failed')
          }});
 
-      }
-      else {
-
-
+      }else {
       //Sending data to api
       this.trainerService.createTrainer(formData).subscribe({
         next:(res)=>{
@@ -169,8 +147,7 @@ export class TrainersAddEditComponent implements OnInit {
         }
       })
     }
-  }
-     else {
+  }else {
       this.markFormGroupTouched(this.trainerForm);
 
     }
@@ -188,6 +165,5 @@ export class TrainersAddEditComponent implements OnInit {
   onCancel(): void {
     this.dialogRef.close();
   }
-
 
 }

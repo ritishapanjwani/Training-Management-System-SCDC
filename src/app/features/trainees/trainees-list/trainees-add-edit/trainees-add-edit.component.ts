@@ -73,28 +73,13 @@ export class TraineesAddEditComponent {
           // this.snackBar.openSnackBar('Failed to load trainees', 'Close');
         }
       });
+    }
   }
-}
-
-
-
-  // private initForm(): void {
-  //   this.trainerForm = this.fb.group({
-  //     trainer: [null, Validators.required],
-  //     modules: [''],
-  //     topics: [''],
-  //     totalDayHour: [''],
-  //     businessUnit: ['', Validators.required],
-  //     startDate: [null, Validators.required],
-  //     endDate: [null, Validators.required]
-  //   });
-  // }
-
-
 
   printForm(){
     console.log(this.traineeForm.valid)
   }
+
   fetchGroupedTrainees(): void {
     this.traineeService.getGroupedTrainees().subscribe({
       next: (response) => {
@@ -105,90 +90,6 @@ export class TraineesAddEditComponent {
       }
     });
   }
-
-  onTraineeSelect(trainee: any): void {
-    if (trainee) {
-      // Update read-only fields
-      this.traineeForm.patchValue({
-        // modules: trainee.modules.join(', '),
-        // topics: trainee.topics.flat().join(', '),
-        // noOfHours: trainee.totalDayHour
-      });
-    } else {
-      // Clear read-only fields if no trainer selected
-      this.traineeForm.patchValue({
-        // modules: '',
-        // topics: '',
-        // noOfHours: ''
-      });
-    }
-  }
-
-  // onFormSubmit(): void {
-  //   if (this.traineeForm.valid) {
-
-
-
-  //     const formData = { ...this.traineeForm.value };
-  //     console.log(formData);
-
-  //     // Normalize trainerName and extract nested fields
-  //     formData.name = formData.name;
-  //     formData.hiringBusinessUnit = formData.hiringBusinessUnit;
-  //     formData.joiningDate = formData.joiningDate;
-  //     formData.location = formData.location;
-  //     formData.mappedBusinessUnit = formData.mappedBusinessUnit;
-  //     formData.currentStatus = formData.currentStatus;
-
-  //     // formData.module = formData.modules
-  //     // formData.topics = formData.topics
-  //     // formData.noOfHours = formData.noOfHours
-
-  //     if(this.data){
-  //       this.traineeService.updateTrainee(this.data._id,formData).subscribe({
-  //         next:(res)=>{
-  //           console.log('Trainee updated:', res);
-
-  //           this.snackBar.openSnackBar('Trainee updated', 'Success');
-  //           this.dialogRef.close(true);
-  //         },
-  //         error:(error)=>{
-  //           console.error('Error updating trainer:', error);
-  //          this.snackBar.openSnackBar('error updating trainee', 'Failed')
-  //        }});
-
-  //     }
-  //     else {
-
-
-  //     //Sending data to api
-  //     this.traineeService.createTrainee(formData).subscribe({
-  //       next:(res)=>{
-  //         console.log("Trainee added successfully!", res);
-  //         this.snackBar.openSnackBar('Trainee added', 'Success');
-  //         this.dialogRef.close(true);
-  //       },
-  //       error:(err)=>{
-  //         console.error('Error saving trainee:', err);
-  //         this.snackBar.openSnackBar('error adding trainee', 'Failed')
-  //       }
-  //     })
-  //   }
-  // }
-  //    else {
-  //     this.markFormGroupTouched(this.traineeForm);
-
-  //   }
-  // }
-
-  // private markFormGroupTouched(formGroup: FormGroup): void {
-  //   Object.values(formGroup.controls).forEach(control => {
-  //     control.markAsTouched();
-  //     if (control instanceof FormGroup) {
-  //       this.markFormGroupTouched(control);
-  //     }
-  //   });
-  // }
 
   onFormSubmit(): void {
     if (this.traineeForm.valid) {
@@ -239,9 +140,7 @@ export class TraineesAddEditComponent {
     }
   }
 
-  /**
-   * Helper function to mark all controls in the form group as touched
-   */
+  //Helper function to mark all controls in the form group as touched
   private markFormGroupTouched(formGroup: FormGroup): void {
     Object.values(formGroup.controls).forEach((control) => {
       if (control instanceof FormGroup) {

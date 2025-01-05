@@ -1,20 +1,19 @@
 <mat-toolbar class="sticky-header">
-  <span [ngStyle]="{'font-size': '25px','font-family': 'Arial, Sans-serif', 'letter-spacing':'2px', 'font-weight':'bold'}">Trainees</span>
+  <span [ngStyle]="{'font-size': '25px','letter-spacing':'2px', 'font-weight':'bold'}">Trainees</span>
   <span class="example-spacer"></span>
 
   <div class="search-container">
-    <mat-form-field appearance="outline" class="search-field">
+    <div  class="search-field">
       <mat-icon matPrefix>search</mat-icon>
-      <input matInput
-             [formControl]="searchControl"
-             placeholder="Search Trainee by name"
-             (keyup)="onSearch()">
+        <input matInput
+        [formControl]="searchControl"
+        placeholder="Search Trainee"
+        (keyup)="onSearch()">
       <button mat-icon-button matSuffix *ngIf="searchControl.value" (click)="clearSearch()">
         <mat-icon>close</mat-icon>
       </button>
-    </mat-form-field>
+    </div>
   </div>
-
 
   <button mat-raised-button color="primary" (click)="openAddEditForm()" class="addTrainee">
     <mat-icon>add</mat-icon>
@@ -22,9 +21,8 @@
   </button>
 </mat-toolbar>
 
-
-<div class="programs-container">
-  <div class="program-grid">
+<div class="trainee-container">
+  <div class="trainee-grid">
     <mat-card class="program-card" *ngFor="let trainee of filteredTrainees">
       <mat-card-header>
         <mat-card-title>{{ trainee.name }}</mat-card-title>
@@ -33,15 +31,8 @@
         </div>
       </mat-card-header>
 
-      <mat-card-content class="program-content">
-
-        <div class="trainers-container">
-
-          <mat-divider></mat-divider>
-            </div>
-
-
-        <div class="trainer-details">
+      <mat-card-content class="trainee-content">
+        <div class="trainee-details" [ngStyle]="{'font-size': '15px'}">
           <p><mat-icon>place</mat-icon>{{trainee.location}}</p>
           <p><mat-icon>theaters icon</mat-icon>Hiring Business Unit: {{ trainee.hiringBusinessUnit }}</p>
           <p><mat-icon>date_range</mat-icon>Joining Date: {{trainee.joiningDate  | date: 'MMM d, y'}}</p>
@@ -50,14 +41,12 @@
       </mat-card-content>
 
       <div class="card-footer">
-
           <button mat-button color="primary" (click)="openEditForm(trainee)" >
             <mat-icon>edit</mat-icon> Edit
           </button>
-          <button mat-button color="warn" (click)="deleteProgram(trainee._id)">
+          <button mat-button color="warn" (click)="deleteTrainee(trainee._id)">
             <mat-icon>delete</mat-icon> Delete
           </button>
-
       </div>
     </mat-card>
   </div>

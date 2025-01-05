@@ -52,20 +52,15 @@ export class ProgramsAddEditComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    const topicsArray = this.programForm.get('topics') as FormArray;
+        topicsArray.clear();
+        if (this.data.topics && Array.isArray(this.data.topics)) {
+            this.data.topics.forEach((topic: string) => {
+                topicsArray.push(new FormControl(topic));
+            });
+        }
     this.programForm.patchValue(this.data);
   }
-// Not used now just for ref for future feature
-  // private loadTrainerNames() {
-  //   this.trainerService.getTrainerNames().subscribe({
-  //     next: (names) => {
-  //       this.trainerNames = names;
-  //       console.log(this.trainerNames);
-  //     },
-  //     error: (error) => {
-  //       console.error('Error loading trainer names:', error);
-  //     }
-  //   });
-  // }
 
   private formatDate(date: Date): string {
     if (!date) return '';
@@ -95,12 +90,12 @@ export class ProgramsAddEditComponent implements OnInit {
       const formData = { ...this.programForm.value };
 
       // Format dates
-      if (formData.startDate) {
-        formData.startDate = this.formatDate(new Date(formData.startDate));
-      }
-      if (formData.endDate) {
-        formData.endDate = this.formatDate(new Date(formData.endDate));
-      }
+      // if (formData.startDate) {
+      //   formData.startDate = this.formatDate(new Date(formData.startDate));
+      // }
+      // if (formData.endDate) {
+      //   formData.endDate = this.formatDate(new Date(formData.endDate));
+      // }
 
       // Validate times
       formData.startTime = this.validateTime(formData.startTime);
@@ -159,8 +154,6 @@ export class ProgramsAddEditComponent implements OnInit {
     this.dialogRef.close();
   }
 
-
-
    addTopic(event: MatChipInputEvent): void {
     const value = (event.value || '').trim();
 
@@ -185,7 +178,6 @@ export class ProgramsAddEditComponent implements OnInit {
     }
   }
 
-
   editTopic(topic: string, event: any): void {
     const value = event.value.trim();
     const index = this.topics.indexOf(topic);
@@ -207,11 +199,9 @@ export class ProgramsAddEditComponent implements OnInit {
     return topicsArray.invalid && (topicsArray.dirty || topicsArray.touched);
   }
 
-
 get topicsArray(): FormArray {
   return this.programForm.get('topics') as FormArray;
 }
-
   // Method to set topics array
   setTopics(topics: string[]): void {
     this.topics = [...topics];

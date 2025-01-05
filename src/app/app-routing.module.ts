@@ -30,42 +30,9 @@ const routes: Routes = [
       { path: 'trainers-list', component: TrainersListComponent },
       {path:'dashboard',component:DashboardComponent},
       {path:'scores',component:ScoreCardComponent},
-
     ],
   },
-  // { path: 'program', component:ProgramsListComponent },
 ];
-
-// const routes: Routes = [
-//   {path: 'home', component:HomeComponent},
-//   {path:'login',component:LoginComponent},
-//   {path:'register',component:RegisterComponent},
-//   // {path:'login',component:LoginComponent},
-//   // {},
-//   {path: '', component:HeaderComponent,
-
-//     children: [
-//       {path:'program-list', component:ProgarmsListComponent},
-//       {path:'trainees-list',component:TraineesListComponent},
-//       {path:'trainers-list', component:TrainersListComponent},
-
-
-//     ]
-//   },
-
-
-
-//   // {path:'program-add-edit', component:ProgramsAddEditComponent},
-//   // ,
-//   // {path:'trainers-add-edit', component:TrainersAddEditComponent},
-//   // {path:'trainees-list', component:TraineesListComponent}
-//   // {path:'trainees-add-edit', component:TraineesAddEditComponent},
-
-
-//   // { path: '**', component: HeaderComponent }
-
-// ];
-
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]

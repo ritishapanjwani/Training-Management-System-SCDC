@@ -21,48 +21,33 @@ export class TraineesListComponent {
   filteredTrainees: Trainee[] = [];
   searchControl = new FormControl('');
 
+  constructor(private traineeService: TraineeService, private dialog: MatDialog, private snackBar: SnackBarService, private popUpService: PopUpService) {}
 
-    constructor(private traineeService: TraineeService, private dialog: MatDialog, private snackBar: SnackBarService, private popUpService: PopUpService) {}
+  ngOnInit(): void {
+    this.getTrainees();
 
-    ngOnInit(): void {
-      this.getTrainees();
-
-      this.searchControl.valueChanges.pipe(
-            debounceTime(300),
-            distinctUntilChanged()
-          ).subscribe(() => {
-            this.onSearch();
-          });
-    }
-
-
-
-  getTrainees(): void{
-  this.traineeService.getAllTrainees().subscribe({
-    next: (res) =>{
-      this.trainees = res;
-      this.filteredTrainees = [...this.trainees];
-      console.log(this.trainees);
-    },
-    error: (err) =>{
-      console.log("Error occured while getting data", err);
-    }
-  });
-
+    this.searchControl.valueChanges.pipe(
+      debounceTime(300),
+      distinctUntilChanged()
+    ).subscribe(() => {
+      this.onSearch();
+    });
   }
 
-    createTrainee(traineeData: any) {
-      // this.programService.createTrainer(trainerData).subscribe({
-      //   next: (res) => {
-      //     this.getGroupedTrainers(); // Refresh the list after adding a new trainer
-      //   },
-      //   error: (err) => {
-      //     console.log(err);
-      //   }
-      // });
-    }
+  getTrainees(): void{
+    this.traineeService.getAllTrainees().subscribe({
+      next: (res) =>{
+        this.trainees = res;
+        this.filteredTrainees = [...this.trainees];
+        console.log(this.trainees);
+      },
+      error: (err) =>{
+        console.log("Error occured while getting data", err);
+      }
+    });
+  }
 
-    onSearch(): void {
+  onSearch(): void {
       const searchTerm = (this.searchControl.value || '').toLowerCase().trim();
        console.log("inside onsearch");
       if (!searchTerm) {
@@ -71,7 +56,7 @@ export class TraineesListComponent {
       }
       else{
       // console.log(this.trainees);
-      this.filteredTrainees = this.trainees.filter(traine =>
+        this.filteredTrainees = this.trainees.filter(traine =>
         traine.name.toLowerCase().includes(searchTerm) ||
         traine.hiringBusinessUnit.toLowerCase().includes(searchTerm) ||
         traine.location.toLowerCase().includes(searchTerm) ||
@@ -79,58 +64,51 @@ export class TraineesListComponent {
       );
       console.log(this.trainees);
     }
-    }
+  }
 
-    clearSearch(): void {
-      this.searchControl.setValue('');
-    }
+  clearSearch(): void {
+    this.searchControl.setValue('');
+  }
 
-
-
-      openAddEditForm() {
-       const dialogRef = this.dialog.open(TraineesAddEditComponent);
-       dialogRef.afterClosed().subscribe({
-        next:(res)=>{
-          if(res){
-            this.getTrainees();
-          }
+  openAddEditForm() {
+    const dialogRef = this.dialog.open(TraineesAddEditComponent);
+    dialogRef.afterClosed().subscribe({
+      next:(res)=>{
+        if(res){
+          this.getTrainees();
         }
-       })
-
       }
+    })
+  }
 
-      openEditForm(data:any){
-          const dailogRef= this.dialog.open(TraineesAddEditComponent,{
-            data:data
-          });
-          dailogRef.afterClosed().subscribe({
-              next:(res)=>{
-                if(res){
-                  this.getTrainees();
-                }
-              }
-             });
+  openEditForm(data:any){
+    const dailogRef= this.dialog.open(TraineesAddEditComponent,{
+      data:data
+    });
+    dailogRef.afterClosed().subscribe({
+      next:(res)=>{
+        if(res){
+          this.getTrainees();
         }
+      }
+    });
+  }
 
-
-    deleteProgram(id: string): void {
-      // Logic to delete a program
-      this.popUpService.confirm('Are you sure you want to delete this trainee?').subscribe(result=>{
-        if(result){
-          this.traineeService.deleteTrainee(id).subscribe({
-            next:(res)=>{
-              console.log("Trainee deleted successfully!");
-              this.snackBar.openSnackBar("Trainee deleted", 'Success');
-              this.getTrainees();
-            },
-            error(err) {
-                console.log(err);
-            },
-          });
-        }
-      });
-    }
-
-
-
+  deleteTrainee(id: string): void {
+    // Logic to delete a program
+    this.popUpService.confirm('Are you sure you want to delete this trainee?').subscribe(result=>{
+      if(result){
+        this.traineeService.deleteTrainee(id).subscribe({
+          next:(res)=>{
+            console.log("Trainee deleted successfully!");
+            this.snackBar.openSnackBar("Trainee deleted", 'Success');
+            this.getTrainees();
+          },
+          error(err) {
+            console.log(err);
+          },
+        });
+      }
+    });
+  }
 }

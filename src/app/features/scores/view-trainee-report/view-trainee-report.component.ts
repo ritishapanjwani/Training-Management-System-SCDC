@@ -32,20 +32,16 @@ export class ViewTraineeReportComponent implements OnInit{
             if(trainee.traineeName==data.name){
             this.student=trainee;
             this.topics.forEach((topic:any)=>{
-              // let var=topic.names
               console.log(this.student[topic.names+'Score']);
             });
             console.log((this.student.traineeName));
             }
           })
-          // console.log(typeof(this.scorecard));
         });
       }
     }
   ngOnInit(): void {
-    // throw new Error('Method not implemented.');
   }
-
     processData(data: any[],name:string): any[] {
       const traineeMap: any = {};
 
@@ -68,12 +64,10 @@ export class ViewTraineeReportComponent implements OnInit{
     trainees.forEach((trainee: any) => {
       trainee.overallPercentage = parseFloat(((trainee.overallScore/ trainee.totalscore)*100).toFixed(2));
     });
-
       return trainees;
     }
 
     closeDialog() {
       this.dialogRef.close();
     }
-
 }

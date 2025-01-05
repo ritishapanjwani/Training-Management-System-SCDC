@@ -58,16 +58,6 @@ export class CreateScoreCardComponent implements OnInit{
       });
     }
 
-    // if(this.data.id){
-    //   this.scorecardservice.getScoreCardById(this.data.id).subscribe(card=>{
-    //     this.scorecard=card;
-    //     if(card){
-    //       this.scoreCardForm.patchValue(card);
-    //       this
-    //     }
-    //   });
-    // }
-
   }
 
   //creating [trainee name,Assessment score, percentage]
@@ -103,7 +93,6 @@ export class CreateScoreCardComponent implements OnInit{
   recalculatePercentages(): void {
     this.SCCTrainee.controls.forEach((_, index) => this.calculatePercentage(index));
   }
-
 
   savePost(): void {
 
@@ -151,43 +140,4 @@ export class CreateScoreCardComponent implements OnInit{
       this.snackBar.openSnackBar('Score card is Invalid', 'Save Failed');
     }
   }
-
-
-//Saves data to database
-  // savePost(): void {
-  //   if (this.scoreCardForm.valid) {
-  //     if (this.data) {
-  //       this.scorecardservice.updateScoreCard(this.data.id, this.scoreCardForm.value).subscribe({
-  //         next: (res) => {
-  //           console.log("Scores added!", res);
-  //           this.snackBar.openSnackBar('Scores updated', 'success');
-  //           this.dialogRef.close(true); // Explicitly close with true
-  //         },
-  //         error: (error) => {
-  //           console.log("error occurred updating scores", error);
-  //           this.snackBar.openSnackBar('Failed to update', 'Failed');
-  //           this.dialogRef.close(false); // Close with false on error
-  //         }
-  //       });
-  //     } else {
-  //       this.scorecardservice.createScoreCard(this.scoreCardForm.value).subscribe({
-  //         next: (res) => {
-  //           console.log("Score saved successfully", res);
-  //           this.snackBar.openSnackBar('Scores added!', 'success');
-  //           console.log("About to close dialog with true");
-  //           this.dialogRef.close(true);  // Verify this is called
-  //           console.log("Dialog closed");
-  //         },
-  //         error: (error) => {
-  //           console.log('Error saving scores', error);
-  //           this.snackBar.openSnackBar('Error saving scores','failed');
-  //           this.dialogRef.close(false);
-  //         }
-  //       });
-  //     }
-  //   } else {
-  //     this.snackBar.openSnackBar('Score card is Invalid', 'Save Failed');
-  //     // Don't close the dialog if form is invalid
-  //   }
-  // }
 }

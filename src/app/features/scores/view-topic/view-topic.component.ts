@@ -30,17 +30,7 @@ export class ViewTopicComponent implements OnInit{
     }
   }
 
-
   ngOnInit(): void {
-
-    // let id=this.activatedroute.snapshot.paramMap.get('id');
-
-    // if(id){
-    //   this.scorecardservice.getScoreCardById(id).subscribe(card=>{
-    //     this.scorecard=card;
-    //     console.log(typeof(this.scorecard));
-    //   });
-    // }
     this.calculateAveragePercentage();
   }
 

@@ -82,12 +82,6 @@ export class ScoreCardComponent implements OnInit,AfterViewInit {
 
     //DataSource filtering
     this.dataSource.filterPredicate = (data: any, filter: string) => {
-      // const dataStr = Object.keys(data).reduce((currentTerm: string, key: string) => {
-      //   return currentTerm + (data as { [key: string]: any })[key] + '◬';
-      // }, '').toLowerCase();
-
-      // const transformedFilter = filter.trim().toLowerCase();
-      // return dataStr.indexOf(transformedFilter) !== -1;
       return data.traineeName.toLowerCase().includes(filter);
   }
 }
@@ -133,7 +127,7 @@ loadScoreCards() {
     //calculating overall percentage
     const trainees = Object.values(traineeMap);
     trainees.forEach((trainee: any) => {
-      trainee.overallPercentage = parseFloat(((trainee.overallScore/ trainee.totalscore)*100).toFixed(2));
+      trainee.overallPercentage = Math.round((trainee.overallScore / trainee.totalscore) * 100);
     });
     //calculating Rank
     trainees.sort((a: any, b: any) => b.overallScore - a.overallScore);
@@ -244,73 +238,4 @@ loadScoreCards() {
     })
 
   }
-
-  //pop-up for delete template
-  // popUp(){
-  //   this.popup.confirm('Are you sure want to delete this item?')
-  //   .subscribe(result=>{
-  //     if(result){
-  //       console.log('Item deleted');
-  //       if yes --write code here--
-  //     }
-  //   });
-  // }
 }
-
-
-// import { Component,OnInit } from '@angular/core';
-// import { ScoreCardServiceService } from 'src/app/models/score-card-service.service';
-
-// @Component({
-//   selector: 'app-score-card',
-//   standalone:false,
-//   templateUrl: './score-card.component.html',
-//   styleUrls: ['./score-card.component.scss']
-// })
-// export class ScoreCardComponent implements OnInit {
-
-//   //temporary variable to store fetched data
-//   scorecard: any[]=[];
-//   ModuleIdArray:any;
-
-//   constructor(private scorecardservice:ScoreCardServiceService){}
-
-//   //THis is useful for loading data when page is refreshed or reloaded
-//   ngOnInit(): void {
-//     this.loadScoreCards();
-//   }
-
-//   //fetching Score card from database
-//   loadScoreCards(){
-//     this.scorecardservice.getScoreCard().subscribe({
-//       next:(data)=>{
-//         this.scorecard=data;
-//         console.log('loaded score cards succesfully.')
-//       },
-//       error:(error)=>{
-//         console.error('There is an error!',error);
-//       }
-//     });
-//     // Iterate over the outer array
-//     this.scorecard.forEach(topic => {
-//       // console.log(`Topic: ${topic.topicName}, Total Marks: ${topic.totalMarks}`);
-//       this.ModuleIdArray=topic.SCCTrainee;
-
-
-//       // Iterate over the inner array
-//       topic.SCCTrainee.forEach((trainee:any) => {
-//         // console.log(`Name: ${trainee.traineeName}, Score: ${trainee.assessmentScore}`);
-//         data:this.scorecard;
-//       });
-//     });
-//   }
-
-//   displayedColumns: string[]= ['traineeName','assessmentScore','percentage'];
-//   columnsToDisplay: string[] = this.displayedColumns.slice();
-
-//   //displaying design using Angular material UI
-//   // displayedColumns: string[] = ['topicName'];
-//   // columnsToDisplay: string[] = this.displayedColumns.slice();
-//   // data:any[]=this.scorecard;
-
-// }

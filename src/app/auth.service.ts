@@ -47,10 +47,7 @@ export class AuthService {
   getUserDetails(): Observable<{ email: string; role: string }> {
     return this.http.get<{ email: string; role: string }>(`${this.apiUrl}/user-details`);
   }
-  // getRole() {
-  //   const user = this.getUser();
-  //   return user ? user.role : null;
-  // }
+
 
   getUserRole(): string {
     const token = this.getToken();

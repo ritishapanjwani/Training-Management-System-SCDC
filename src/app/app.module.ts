@@ -13,7 +13,7 @@ import { SidebarComponent } from './shared/components/sidebar/sidebar.component'
 import { DashboardComponent } from './features/dashboard/dashboard.component';
 import { TraineesListComponent } from './features/trainees/trainees-list/trainees-list.component';
 import { TraineesAddEditComponent } from './features/trainees/trainees-list/trainees-add-edit/trainees-add-edit.component';
-import { ScoresComponent } from './features/scores/scores.component';
+
 import { ProgramsModule } from './features/programs/programs.module';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
@@ -28,11 +28,15 @@ import { LoginComponent } from './login/login/login.component';
 import { RegisterComponent } from './login/register/register.component';
 import { AddColumnComponent } from './features/scores/add-column/add-column.component';
 import { ScoreCardComponent } from './features/scores/score-card/score-card.component';
-import { ScoresModule } from './features/scores/scores.module';
-
-
-
-
+import { CreateScoreCardComponent } from './features/scores/create-score-card/create-score-card.component';
+import { ViewTopicComponent } from './features/scores/view-topic/view-topic.component';
+import { ViewTraineeReportComponent } from './features/scores/view-trainee-report/view-trainee-report.component';
+import { MatColumnDef, MatTableModule } from '@angular/material/table';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
+import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
 
 //creating a constant array of all the modules
 const uxModules = [
@@ -43,9 +47,6 @@ const uxModules = [
   RouterOutlet
 ];
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,14 +54,22 @@ const uxModules = [
     SidebarComponent,
     DashboardComponent,
     TraineesListComponent,
+    AddColumnComponent,
+    CreateScoreCardComponent,
+    ScoreCardComponent,
+    ViewTopicComponent,
+    ViewTraineeReportComponent,
     TraineesAddEditComponent,
-    ScoresComponent,
+    ScoreCardComponent,
     HomeComponent,
     LoginComponent,
     RegisterComponent,
   ],
   imports: [
+    CommonModule,
+    FormsModule,
     BrowserModule,
+    HttpClientModule,
     MatInputModule,
     BrowserAnimationsModule,
     AppRoutingModule,
@@ -71,8 +80,11 @@ const uxModules = [
     MatDatepickerModule,
     MatFormFieldModule,
     MatDividerModule,
-    ScoresModule,
     ProgramsModule,
+    MatDialogModule,
+    MatPaginatorModule,
+    MatSortModule,
+    MatTableModule,
     uxModules
   ],
   providers: [

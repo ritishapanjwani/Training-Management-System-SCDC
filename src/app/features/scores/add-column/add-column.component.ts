@@ -87,10 +87,8 @@ export class AddColumnComponent implements OnInit {
 
 
   savePost() {
-
-      let flag: boolean=false;
+    let flag: boolean=false;
       if (this.AddColumnForm.valid) {
-
         this.scorecardservice.getScoreCard().subscribe({
           next:(data)=>{
             data.forEach((topic:any)=>{

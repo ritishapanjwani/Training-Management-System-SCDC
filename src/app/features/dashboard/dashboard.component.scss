@@ -1,3 +1,15 @@
+.sticky-header {
+
+  //margin-left: 10px;
+  margin-right:50px;
+  // margin-right: -600px;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: white;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
 :host {
   display: block;
   background-color: #f5f5f5;
@@ -8,25 +20,12 @@ mat-toolbar {
   margin-bottom: 16px;
   font-size: 1.5rem;
   font-weight: bold;
-
-}
-
-.sticky-header {
-
-  //margin-left: 16px;
-  // margin-right: -600px;
-  position: sticky;
-  top: 0;
-  z-index: 1000;
-  background-color: white;
-  box-shadow: 0 2px 4px rgba(0,0,0,0.1);
 }
 
 mat-card-header {
   display: flex;
   align-items: center;
-  gap: 4px;
-  /* Add gap between icon and title */
+  gap: 4px; /* Add gap between icon and title */
 }
 
 .dashboard-container {
@@ -37,11 +36,9 @@ mat-card-header {
 
 .summary-cards {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  /* 4 equal-sized columns */
+  grid-template-columns: repeat(4, 1fr); /* 4 equal-sized columns */
   gap: 16px;
 }
-
 
 .summary-card {
   display: flex;
@@ -59,10 +56,29 @@ mat-card-header {
 
 .summary-card h3 {
   margin: 2px 0;
+  // margin-bottom: 12px; /* Add space between heading and metric values */
   font-size: 1.4rem;
   font-weight: bold;
   color: #3f51b5;
 }
+
+
+.metric {
+  display: flex; /* Use flex to align label and value in a row */
+  justify-content: space-between; /* Space between label and value */
+  width: 100%; /* Stretch to fit the card's width */
+  font-size: 1rem;
+  margin: 4px 0; /* Space between each metric */
+}
+
+.metric-value {
+  font-size: 1.1rem;
+  font-weight: bold;
+  text-align: right;
+  color: #333;
+  display: inline-block;
+}
+
 
 .summary-icon {
   font-size: 1.4rem;
@@ -70,24 +86,9 @@ mat-card-header {
   margin-bottom: 2px;
 }
 
-.metric {
-  font-size: 0.9rem;
-  margin: 2px 0;
-}
-
-.metric-value {
-  font-size: 1.2rem;
-  font-weight: bold;
-  color: #333;
-}
-
-
-
-
 .charts-container {
-  /*Pie chart takes 1 part, Bar chart takes 2 parts*/
   display: grid;
-  grid-template-columns: 1fr 2fr;
+  grid-template-columns: 1fr 2fr; /* Pie chart takes 1 part, Bar chart takes 2 parts */
   gap: 24px;
 }
 
@@ -97,35 +98,81 @@ mat-card-header {
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   padding: 16px;
   text-align: center;
-}
-
-.pie-chart-container {
+  overflow: hidden; /* Prevent content from overflowing */
   display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 350px;
-  //padding-right:10px;
+  flex-direction: column; /* Stack content vertically */
+  align-items: center; /* Center content horizontally */
+  justify-content: space-between; /* Distribute heading and chart */
+  height: 350px; /* Fix the card height */
+  box-sizing: border-box;
 }
 
+.pie-chart-container,
 .bar-chart-container {
-  width: 96%;
-  height: 340px;
   display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
+  flex-direction: column; /* Stack heading and chart vertically */
+  justify-content: flex-start; /* Align content to the top */
+  align-items: center; /* Center content horizontally */
+  height: 350px; /* Fill the parent card's height */
+  width: 95%;
 }
 
 .chart h3 {
   font-size: 1.2rem;
   font-weight: bold;
-  margin-bottom: 16px;
+  margin: 0;
+  padding: 8px;
   color: #333;
   word-wrap: break-word;
+  text-align: center;
+  width: 100%; /* Ensure the heading stays within the card */
+  box-sizing: border-box; /* Include padding in width calculation */
 }
 
 canvas {
-  max-width: 100%;
-  height: 100%;
-  /* Ensure the canvas fits within its container */
+  max-width: 100%; /* Fit within the card's width */
+  max-height: calc(100% - 40px); /* Adjust height to account for the heading */
+  flex-grow: 1; /* Allow the chart to grow within its container */
+}
+
+ /* RESPONSIVENESS */
+
+/* For medium-sized screens (e.g., tablets) */
+@media (max-width: 1024px) {
+  .summary-cards {
+    grid-template-columns: repeat(2, 1fr); /* Reduce to 2 columns */
+  }
+
+  .charts-container {
+    grid-template-columns: 1fr; /* Stack charts vertically */
+  }
+}
+
+/* For small screens (e.g., mobile phones) */
+@media (max-width: 768px) {
+  .summary-cards {
+    grid-template-columns: 1fr; /* Single column layout */
+  }
+
+  .summary-card {
+    height: auto; /* Allow cards to adjust height dynamically */
+    padding: 12px; /* Reduce padding for smaller screens */
+  }
+
+  .metric {
+    font-size: 0.9rem; /* Slightly smaller font size for metrics */
+  }
+
+  .charts-container {
+    grid-template-columns: 1fr; /* Stack charts vertically */
+    gap: 16px; /* Reduce gap between charts */
+  }
+
+  .chart {
+    height: auto; /* Allow charts to adjust height dynamically */
+  }
+
+  mat-toolbar {
+    font-size: 1.2rem; /* Reduce toolbar font size for smaller screens */
+  }
 }

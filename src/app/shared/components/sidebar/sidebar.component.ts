@@ -26,9 +26,6 @@ export class SidebarComponent {
   //   });
   // }
 
-
-
-
   logout(): void {
     this.popUpService.confirm('Are you sure you want to Logout?').subscribe(result=>{
       if(result){

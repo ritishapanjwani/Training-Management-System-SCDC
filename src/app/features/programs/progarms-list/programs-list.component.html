@@ -1,19 +1,22 @@
 <mat-toolbar class="sticky-header">
-  <span [ngStyle]="{'font-size': '25px','font-family': 'Arial, Sans-serif', 'letter-spacing':'2px', 'font-weight':'bold'}">Modules</span>
+  <span [ngStyle]="{'font-size': '25px','letter-spacing':'2px', 'font-weight':'bold'}">Modules</span>
   <span class="example-spacer"></span>
+
+
 
   <!--  search field -->
   <div class="search-container">
-    <mat-form-field appearance="outline" class="search-field">
+    <div  class="search-field">
       <mat-icon matPrefix>search</mat-icon>
-      <input matInput
-             [formControl]="searchControl"
-             placeholder="Search by program or trainer name"
-             (keyup)="onSearch()">
+        <input matInput
+        [formControl]="searchControl"
+        placeholder="Search Module"
+        (keyup)="onSearch()">
+
       <button mat-icon-button matSuffix *ngIf="searchControl.value" (click)="clearSearch()">
         <mat-icon>close</mat-icon>
       </button>
-    </mat-form-field>
+    </div>
   </div>
 
   <button mat-raised-button color="primary" (click)="openAddEditForm()" class="addModule">
@@ -34,13 +37,13 @@
 
         <mat-card-content class="program-content">
           <div class="trainers-container">
-            <div *ngFor="let program of programGroup.trainers; let i = index" class="trainer-section">
-              <div class="trainer-header">
-                <h3>Trainer {{ i + 1 }}</h3>
+            <div *ngFor="let program of programGroup.trainers; let i = index" class="trainer-section" >
+              <div class="trainer-header"  >
+                <h3 >Trainer {{ i + 1 }}</h3>
                 <mat-divider></mat-divider>
               </div>
 
-              <div class="trainer-details">
+              <div class="trainer-details" >
                 <p><mat-icon>person</mat-icon> {{ program.trainer }}</p>
                 <p><mat-icon>computer</mat-icon> {{ program.trainingMode }}</p>
                 <p><mat-icon>topic</mat-icon> {{ program.topics.join(', ') }}</p>
@@ -59,13 +62,6 @@
             </div>
           </div>
         </mat-card-content>
-
-        <!-- <div class="card-footer"> -->
-          <!-- <mat-card-actions  *ngFor="let program of programGroup.trainers; let i= index">
-
-
-          </mat-card-actions> -->
-        <!-- </div> -->
 
       </mat-card>
     </div>

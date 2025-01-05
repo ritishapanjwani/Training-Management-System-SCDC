@@ -11,9 +11,9 @@
         <h3> {{ card.title }}</h3>
       </mat-card-header>
       <mat-card-content>
-        <p *ngFor="let metric of card.metrics" class="metric">
-          {{ metric.label }}: <span class="metric-value">{{ metric.value }}</span>
-        </p>
+        <div *ngFor="let metric of card.metrics" class="metric">
+          {{ metric.label }}: <span class="metric-value"> {{ metric.value }}</span>
+        </div>
       </mat-card-content>
     </mat-card>
   </div>
@@ -22,13 +22,13 @@
   <div class="charts-container">
     <!-- Pie Chart -->
     <div class="chart pie-chart-container">
-      <h3 [ngStyle]='{"padding-left":"45px"}'>Training Program Status</h3>
+      <h3>Training Program Status</h3>
       <canvas id="MyPieChart"></canvas>
     </div>
 
     <!-- Bar Chart -->
     <div class="chart bar-chart-container">
-      <h3 [ngStyle]='{"padding-top":"15px"}'>Assessment Performance </h3>
+      <h3>Assessment Performance </h3>
       <canvas id="MyBarChart"></canvas>
     </div>
   </div>

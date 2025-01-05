@@ -1,10 +1,3 @@
-// .heading{
-//   font-size: '25px';
-//   font-family: 'Arial, Sans-serif';
-//   letter-spacing:2px;
-//   font-weight:bold;
-// }
-
 .addTrainer{
   padding-right:10px;
   margin-right:10px;
@@ -40,28 +33,60 @@
 }
 
 .search-container {
-  flex: 1;
-max-width: 400px;
-margin-top: 20px;
-margin-right: 35px;
-padding: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  // padding: 10px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  // box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
 
+  margin-right: 19px;
 }
 
 .search-field {
+  display: flex;
+  align-items: center;
   width: 100%;
-  height:10vh;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  overflow: hidden;
+  padding: 0 8px;
+}
 
+.search-field mat-icon {
+  color: #888;
+  margin-right: 4px;
+}
 
-  ::ng-deep .mat-form-field-wrapper {
-    margin-bottom: -1.25em;
+.search-field input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 10px;
+}
 
-  }
+.search-field button {
+  border: none;
+  background: none;
+  color: #888;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
 
-  ::ng-deep .mat-form-field-flex {
-    align-items: center;
+.search-field button:hover {
+  color: #333;
+}
 
-  }
+.search-field input::placeholder {
+  color: #bbb;
+  font-style: italic;
 }
 
 .program-grid {

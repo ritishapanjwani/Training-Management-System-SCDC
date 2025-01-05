@@ -7,31 +7,26 @@ mat-sidenav{
     height: 100%;
 }
 mat-sidenav-content{
-    height: 100vh;
-
-    .main{
-        margin-left: 30px;
-    }
-    .menu-btn{
+  height: 100vh;
+  .main{
+    margin-left: 30px;
+  }
+  .menu-btn{
     cursor: pointer;
     color:black;
     width:25px;
 
-
-
     &:hover {
         cursor: pointer;
     }
-    }
+  }
 }
 mat-toolbar{
 
   display: flex; /* Make toolbar a flex container */
-
   align-items: center; /* Align items vertically */
   //justify-content: space-between;
   margin-bottom:20px;
-
     .right-aligned-text{
       margin:0;
       padding-top:10px;

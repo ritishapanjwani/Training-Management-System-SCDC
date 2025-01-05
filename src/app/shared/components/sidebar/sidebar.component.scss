@@ -62,11 +62,11 @@
 
 .logout
 {
-  margin-top: 80px;
-  margin-left: -50px;
+  margin-top: 200px;
+  margin-left: -20px;
   padding-top:10px;
   padding-bottom:10px;
-  padding-left:60px;
+  padding-left:50px;
   padding-right:60px;
   border-radius: 5px;
   background: transparent;
@@ -111,7 +111,6 @@
           padding-right:60px;
       }
       &.active-link {
-          font-weight: bold;
           background-color: #0e335b;
           color: #ffffff;
           padding-right:60px;

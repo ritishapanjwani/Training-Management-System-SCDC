@@ -6,11 +6,7 @@ import { Program } from 'src/app/core/interfaces/programs.interface';
 import { SnackBarService } from 'src/app/core/services/snackBar.service';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { FormControl } from '@angular/forms';
-
-import { trigger, state, style, transition, animate } from '@angular/animations';
 import { PopUpService } from 'src/app/core/services/pop-up-service';
-
-
 
 @Component({
   selector: 'app-progarms-list',
@@ -24,10 +20,6 @@ export class ProgramsListComponent implements OnInit{
   groupedPrograms: any[] = [];// holds the grouped programs
   filteredPrograms: any[] = [];// holds filtered data
   searchControl = new FormControl('');// creates form control for search items
-
-
-
-
 
   constructor( private programService: ProgramService, private dialog:MatDialog, private snackBar: SnackBarService,
     private popUpService: PopUpService
@@ -46,7 +38,6 @@ export class ProgramsListComponent implements OnInit{
     });
   }
 
-
   // Function fetches the programs from the service
   fetchProgramDetails(): void {
     this.programService.getPrograms().subscribe({
@@ -59,7 +50,6 @@ export class ProgramsListComponent implements OnInit{
       }
     });
   }
-
 
   groupProgramsByModule(programs: Program[]): void {
     // Define the accumulator type explicitly
@@ -84,8 +74,6 @@ export class ProgramsListComponent implements OnInit{
     this.groupedPrograms = Object.values(grouped);
     console.log('Grouped programs:', this.groupedPrograms);
   }
-
-
 
   onSearch(): void {
     const searchTerm = (this.searchControl.value || '').toLowerCase().trim();
@@ -119,10 +107,6 @@ export class ProgramsListComponent implements OnInit{
     this.searchControl.setValue('');
   }
 
-
-
-
-
   // Event handler for delete button
   deleteProgram(id: string): void {
     this.popUpService.confirm('Are you sure you want to delete this program?').subscribe(result=>{
@@ -143,8 +127,6 @@ export class ProgramsListComponent implements OnInit{
   }
 });
 }
-
-
 
   editPorgram(id:string, program: Program):void{
     console.log('Edit program clicked for:', program);

@@ -30,6 +30,7 @@ export class LoginComponent {
       alert('Please enter both email and password');
       return;
     }
+
     if (this.loginForm.valid) {
       const { email, password } = this.loginForm.value;
       //console.log(this.loginForm.value);
@@ -40,58 +41,9 @@ export class LoginComponent {
         },
         (error) => {
           console.error('Login failed:', error);
-          alert("Login Failed")
+          alert("Invalid Email or Password")
         }
       );
     }
   }
-
-
-
-  // onSubmit(): void {
-  //   if (this.loginForm.valid) {
-  //     const { email, password } = this.loginForm.value;
-  //     this.authService.login(email, password).subscribe(
-  //       (response) => {
-  //         this.authService.setToken(response.token);
-  //         this.router.navigate(['/']);
-  //       },
-  //       (error) => {
-  //         console.error('Login failed:', error);
-  //       }
-  //     );
-  //   }
-  // }
-  // loginForm!: FormGroup; // Define a FormGroup for the login form
-
-  // constructor(
-  //   private formBuilder: FormBuilder,  // Inject FormBuilder
-  //   private authService: AuthService,
-  //   private router: Router
-  // ) { }
-
-  // ngOnInit(): void {
-  //   // Initialize the login form
-  //   this.loginForm = this.formBuilder.group({
-  //     email: ['', [Validators.required, Validators.email]],  // Email field with validation
-  //     password: ['', [Validators.required]]                   // Password field with validation
-  //   });
-  // }
-
-  // // Submit handler
-  // onSubmit() {
-  //   if (this.loginForm.invalid) {
-  //     return;  // If the form is invalid, do nothing
-  //   }
-
-  //   const { email, password } = this.loginForm.value;
-  //   this.authService.login(email, password).subscribe(
-  //     (response) => {
-  //       this.router.navigate(['/dashboard']);  // Navigate to dashboard if login is successful
-  //     },
-  //     (error) => {
-  //       alert('Invalid credentials or error occurred.');
-  //     }
-  //   );
-  // }
 }

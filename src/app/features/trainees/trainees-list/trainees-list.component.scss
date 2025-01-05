@@ -7,7 +7,7 @@
   flex: 1 1 auto;
 }
 
-.programs-container {
+.trainee-container {
   padding: 20px;
   height: calc(100vh - 84px);
   overflow-y: auto;
@@ -16,13 +16,12 @@
     padding: 12px;
   }
 }
-.programs-container::-webkit-scrollbar{
+.trainee-container::-webkit-scrollbar{
  width: 0px;
 }
 
 
 .sticky-header {
-
   margin-left: 16px;
   // margin-right: -600px;
   position: sticky;
@@ -34,26 +33,63 @@
 }
 
 .search-container {
-  flex: 1;
-max-width: 400px;
-margin-top: 20px;
-margin-right: 35px;
-padding: 0px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  // box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  max-width: 700px;
+
+  margin-right: 19px;
 }
 
 .search-field {
+  display: flex;
+  align-items: center;
   width: 100%;
-
-  ::ng-deep .mat-form-field-wrapper {
-    margin-bottom: -1.25em;
-  }
-
-  ::ng-deep .mat-form-field-flex {
-    align-items: center;
-  }
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  background-color: #fff;
+  overflow: hidden;
+  padding: 0 8px;
 }
 
-.program-grid {
+.search-field mat-icon {
+  color: #888;
+  margin-right: 4px;
+}
+
+.search-field input {
+  flex: 1;
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 10px;
+}
+
+.search-field button {
+  border: none;
+  background: none;
+  color: #888;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.search-field button:hover {
+  color: #333;
+}
+
+.search-field input::placeholder {
+  color: #bbb;
+  font-style: italic;
+}
+
+
+.trainee-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   gap: 24px;
@@ -66,7 +102,7 @@ padding: 0px;
   }
 }
 
-.program-card {
+.trainee-card {
 display: flex;
 flex-direction: column;
 transition: all 0.3s ease;
@@ -111,16 +147,6 @@ mat-card-header {
   font-size: 0.875rem;
   font-weight: 500;
 
-  // &.scheduled {
-  //   background-color: #fff3cd;
-  //   color: #856404;
-  // }
-
-
-  // &.completed {
-  //   background-color: #d4edda;
-  //   color: #155724;
-  // }
   &.in.training {
     background-color: #cce5ff;  // Light blue
     color: #004085; // Dark blue
@@ -137,20 +163,14 @@ mat-card-header {
   }
 }
 
-
-
-
-.program-content {
+.trainee-content {
   flex: 1;
   overflow: hidden;
   padding: 0 !important;
 }
 
-
-.trainer-details {
+.trainee-details {
   padding: 18px;
-
-
 
   p {
     display: flex;
@@ -180,30 +200,7 @@ mat-card-header {
       flex-shrink: 0; /* Prevent icon shrinking */
     }
   }
-
-  .modules-topics {
-    max-height: 200px; /* Set a maximum height */
-    overflow-y: auto; /* Add vertical scrollbar if content exceeds max-height */
-    padding-right: 10px; /* Add some padding to avoid scrollbar overlap */
-    h3{
-      position: relative;
-      font:bold;
-    }
-  }
-  .modules-topics::-webkit-scrollbar {
-    width: 0px; /* Width of the scrollbar */
-  }
-
-  .modules-topics::-webkit-scrollbar-thumb {
-    background-color: #888; /* Color of the scrollbar thumb */
-    border-radius: 10px; /* Rounded corners for the scrollbar thumb */
-  }
-
-  .modules-topics::-webkit-scrollbar-thumb:hover {
-    background-color: #ffffff; /* Color when hovering over the scrollbar thumb */
-  }
 }
-
 
 mat-card-actions {
   padding: 16px;
@@ -238,7 +235,6 @@ to {
 }
 }
 
-
 .card-footer{
   display: flex;
   justify-content: space-between;
@@ -246,6 +242,4 @@ to {
   padding: 17px;
   border-top: 1px solid #eee;
 }
-.modules-topics{
-padding-bottom: 20px;
-}
+
