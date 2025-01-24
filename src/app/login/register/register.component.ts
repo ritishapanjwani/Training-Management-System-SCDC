@@ -24,7 +24,7 @@ export class RegisterComponent {
       // confirmPassword: ['', [Validators.required]],
       phoneNo: ['', [Validators.required]],
       dob: ['', [Validators.required]],
-      role: ['', [Validators.required]] // Default role or select input
+      role: ['Admin', [Validators.required]] // Default role or select input
     });
   }
 

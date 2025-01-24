@@ -20,7 +20,6 @@ export class TraineesAddEditComponent {
 
 
   constructor(
-    private programService: ProgramService,
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<TraineesAddEditComponent>,
     private snackBar: SnackBarService,

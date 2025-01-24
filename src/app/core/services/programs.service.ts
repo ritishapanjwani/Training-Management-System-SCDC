@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/auth.service';
 })
 export class ProgramService {
 
-  private baseUrl = 'http://localhost:3000/api/programs'; // Your API URL
+  private baseUrl = 'http://localhost:3000/api/programs';
 
   constructor(private http: HttpClient, private authService: AuthService) {}
 

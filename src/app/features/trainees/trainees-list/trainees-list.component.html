@@ -23,7 +23,7 @@
 
 <div class="trainee-container">
   <div class="trainee-grid">
-    <mat-card class="program-card" *ngFor="let trainee of filteredTrainees">
+    <mat-card class="trainee-card" *ngFor="let trainee of filteredTrainees">
       <mat-card-header>
         <mat-card-title>{{ trainee.name }}</mat-card-title>
         <div class="status-badge" [ngClass]="trainee.currentStatus.toLowerCase()">
